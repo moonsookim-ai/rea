@@ -1,0 +1,160 @@
+{
+  "target_url": "https://www.marqvision.com/",
+  "inspect_web_page": {
+    "evidence_id": "ev_d2883390966aecdc6ffa88e151ef02e12aa14d2dc734698a7dcfa62d746845a6",
+    "browser": "Chrome/153.0.8010.12",
+    "captured_at": {
+      "started_at": "2026-11-10T09:13:58.432Z",
+      "ended_at": "2026-11-10T09:14:05.093Z",
+      "observation_ms": 4000
+    },
+    "resource_count": 65,
+    "resource_types": {
+      "Image": 34,
+      "Script": 29,
+      "Font": 2
+    },
+    "script_count": 33,
+    "script_urls": [
+      "https://www.marqvision.com/_astro/HeroCommand.astro_astro_type_script_index_0_lang.C0Pg1wvR.js",
+      "https://www.marqvision.com/",
+      "https://www.marqvision.com/_astro/campaign.optezuKQ.js",
+      "https://www.marqvision.com/_astro/SaturationField.astro_astro_type_script_index_0_lang.DWQ8kQpi.js",
+      "https://www.marqvision.com/",
+      "https://www.marqvision.com/_astro/Home.astro_astro_type_script_index_0_lang.BHrzpZTq.js",
+      "https://www.marqvision.com/_astro/QuoteBlock.astro_astro_type_script_index_0_lang.CQW3AJDV.js",
+      "https://www.marqvision.com/_astro/FaceStack.astro_astro_type_script_index_0_lang.DMXUobHe.js",
+      "https://www.marqvision.com/",
+      "https://www.marqvision.com/_astro/motion.fgMUaFeX.js",
+      "https://www.marqvision.com/_astro/Base.astro_astro_type_script_index_0_lang.DeeMIHBh.js",
+      "https://www.marqvision.com/_astro/warm.Bqh-nLs5.js",
+      "https://www.marqvision.com/_astro/PlatformTicker.astro_astro_type_script_index_0_lang.DFtF-7lt.js",
+      "https://www.marqvision.com/_astro/PiracyScene.astro_astro_type_script_index_0_lang.DrCLMSZn.js",
+      "https://www.marqvision.com/_astro/OfflineScene.astro_astro_type_script_index_0_lang.BLpT-cRF.js",
+      "https://www.marqvision.com/_astro/CounterfeitScene.astro_astro_type_script_index_0_lang.DFVdwa54.js",
+      "https://www.marqvision.com/",
+      "https://www.marqvision.com/_astro/BrandPreviewCTA.astro_astro_type_script_index_0_lang.8XO3g6U_.js",
+      "https://www.marqvision.com/_astro/AsiaMarkets.astro_astro_type_script_index_0_lang.DT_jIWSh.js",
+      "https://www.marqvision.com/_astro/AgentsPipeline.astro_astro_type_script_index_0_lang.paBy8sEM.js",
+      "https://www.marqvision.com/_astro/TrademarkScene.astro_astro_type_script_index_0_lang.DmuA4v9v.js",
+      "https://www.marqvision.com/_astro/Header.astro_astro_type_script_index_0_lang.CJ6Xyb-v.js",
+      "https://www.marqvision.com/_astro/CourtFiling.astro_astro_type_script_index_0_lang.DfmoO6r0.js",
+      "https://www.marqvision.com/_astro/Constellation.astro_astro_type_script_index_0_lang.eR-r0QN-.js",
+      "https://www.marqvision.com/_astro/AgentChat.astro_astro_type_script_index_0_lang.BaUHF9G6.js",
+      "https://www.marqvision.com/_astro/ThreatTabs.astro_astro_type_script_index_0_lang.pky4GspP.js",
+      "https://www.marqvision.com/_astro/UnauthorizedScene.astro_astro_type_script_index_0_lang.DU5O_Nb1.js",
+      "https://www.marqvision.com/_astro/Waves.astro_astro_type_script_index_0_lang.DCkEZNi1.js",
+      "https://www.marqvision.com/_astro/ImpersonationScene.astro_astro_type_script_index_0_lang.uWp5Za1o.js",
+      "https://www.marqvision.com/_astro/WorldDots.astro_astro_type_script_index_0_lang.DpvgeK7O.js",
+      "https://www.marqvision.com/_astro/DomainPipeline.astro_astro_type_script_index_0_lang.Bv9SRHxX.js",
+      "https://www.marqvision.com/_astro/ClientWall.astro_astro_type_script_index_0_lang.Co_iT3mG.js",
+      "https://www.marqvision.com/_astro/lifecycle.3kTQcYbY.js"
+    ],
+    "storage_keys": {
+      "local": ["_uetvid", "_uetvid_exp", "_uetsid", "_uetsid_exp"],
+      "session": ["_cltk"]
+    },
+    "completeness": "policy_filtered"
+  },
+  "analyze_web_bundle": {
+    "evidence_id": "ev_5a803af79ebc288b540cb9a7d3f657b188db1de89cfe7d1c7ece2391b67d7546",
+    "inferences": [
+      {
+        "kind": "endpoint_candidate",
+        "value": "phishing",
+        "confidence": "low"
+      }
+    ],
+    "unknowns": [
+      "Local returned-reference projections were conservatively widened; effects include additional source-local candidates."
+    ]
+  },
+  "export_web_scripts": {
+    "evidence_id": "ev_ed98826fdf9186db84688b761e333da7a9bf62ffbb62e714713b332282543432"
+  },
+  "playwright_crawl": {
+    "pages": [
+      "https://www.marqvision.com/",
+      "https://www.marqvision.com/privacy-policy",
+      "https://www.marqvision.com/brand-intelligence-agent",
+      "https://www.marqvision.com/marqradar",
+      "https://www.marqvision.com/brand-protection",
+      "https://www.marqvision.com/unauthorized-sales",
+      "https://www.marqvision.com/impersonation",
+      "https://www.marqvision.com/marqlaw",
+      "https://www.marqvision.com/content-protection",
+      "https://www.marqvision.com/brand-protection/industry/beauty",
+      "https://www.marqvision.com/brand-protection/industry/fashion",
+      "https://www.marqvision.com/brand-protection/industry/auto",
+      "https://www.marqvision.com/brand-protection/industry/pharmaceuticals",
+      "https://www.marqvision.com/brand-protection/industry/food-and-beverage",
+      "https://www.marqvision.com/brand-protection/industry/network-marketing",
+      "https://www.marqvision.com/brand-protection/industry/natural-health-products",
+      "https://www.marqvision.com/customers/home",
+      "https://www.marqvision.com/partnership",
+      "https://www.marqvision.com/blog",
+      "https://www.marqvision.com/brand-protection/glossary",
+      "https://www.marqvision.com/events",
+      "https://www.marqvision.com/videos",
+      "https://www.marqvision.com/reports",
+      "https://www.marqvision.com/about-us",
+      "https://www.marqvision.com/news/home",
+      "https://www.marqvision.com/leadership",
+      "https://www.marqvision.com/kr/home",
+      "https://www.marqvision.com/jp/home",
+      "https://www.marqvision.com/de",
+      "https://www.marqvision.com/fr",
+      "https://www.marqvision.com/es",
+      "https://www.marqvision.com/pt",
+      "https://www.marqvision.com/it",
+      "https://www.marqvision.com/zh",
+      "https://www.marqvision.com/request-demo",
+      "https://www.marqvision.com/anti-counterfeit-solution",
+      "https://www.marqvision.com/brand-protection/customers/mschf",
+      "https://www.marqvision.com/case-studies/consumer-brand-counterfeit-saturation-46-to-26",
+      "https://www.marqvision.com/brand-protection/customers/fnf",
+      "https://www.marqvision.com/brand-protection/customers/houndsy",
+      "https://www.marqvision.com/brand-protection/customers/marvis",
+      "https://www.marqvision.com/brand-protection/customers/hollywood-chamber-of-commerce",
+      "https://www.marqvision.com/marqlaw/professionals",
+      "https://www.marqvision.com/brand-protection/customers/lush",
+      "https://www.marqvision.com/brand-protection/customers/romand"
+    ],
+    "third_party_hosts": {
+      "www.marqvision.com": 1812,
+      "cdn-cookieyes.com": 400,
+      "bat.bing.com": 135,
+      "f.clarity.ms": 108,
+      "www.googletagmanager.com": 52,
+      "log.cookieyes.com": 45,
+      "www.clarity.ms": 45,
+      "scripts.clarity.ms": 45,
+      "www.gstatic.com": 5,
+      "forms-na2.hsforms.com": 3,
+      "www.google.com": 3,
+      "c.clarity.ms": 2,
+      "cdn.jsdelivr.net": 2,
+      "cdn.prod.website-files.com": 2,
+      "c.bing.com": 1,
+      "fonts.googleapis.com": 1,
+      "js.hsforms.net": 1,
+      "forms.hsforms.com": 1,
+      "fonts.gstatic.com": 1
+    },
+    "xhr_fetch": [
+      "GET https://cdn-cookieyes.com/common/iab-gvl-v3.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/translations/ZhTe1hz7.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/config/WTTzQQ2l.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/audit-table/nZq4cQsu.json",
+      "POST https://f.clarity.ms/collect",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/translations/Toq3XhLR.json",
+      "GET https://cdn-cookieyes.com/common/purposes-ko.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/audit-table/6DVRQGBt.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/translations/jG2ZK3jA.json",
+      "GET https://cdn-cookieyes.com/common/purposes-fr.json",
+      "GET https://cdn-cookieyes.com/client_data/a26548967e0ff67aba155c9d/audit-table/muydsbTr.json",
+      "GET https://forms.hsforms.com/embed/v3/form/20413311/adef1bbd-1171-473f-b9d1-efdd356409f7/json",
+      "GET https://forms-na2.hsforms.com/embed/v3/form/20413311/adef1bbd-1171-473f-b9d1-efdd356409f7/json"
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "target_url": "https://faikerz.com/",
+  "inspect_web_page": {
+    "evidence_id": "ev_19fe1966b3f1c4ccbcdad3ecb16bae785b5c754f69623715f7d275c2921f01d6",
+    "browser": "Chrome/153.0.8010.12",
+    "captured_at": {
+      "started_at": "2026-11-10T09:14:07.305Z",
+      "ended_at": "2026-11-10T09:14:11.671Z",
+      "observation_ms": 4000
+    },
+    "resource_count": 29,
+    "resource_types": {
+      "Script": 16,
+      "Image": 6,
+      "Font": 3,
+      "Stylesheet": 4
+    },
+    "script_count": 34,
+    "script_urls": [
+      "https://faikerz.com/_next/static/chunks/146-41408f80708a414a.js",
+      "https://faikerz.com/_next/static/chunks/902-569e206f6f1220b4.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/app/(main)/page-54eb08dbf943cb6a.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/app/layout-137ea47f4b2c4c9b.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/530-962b84a0c4914f98.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/275-6c6c76b3f08ae1a1.js",
+      "https://faikerz.com/_next/static/chunks/webpack-1d66c07d68ccedaa.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/961-a31c86d4b74ba66b.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/365-29251df6c9cba252.js",
+      "https://faikerz.com/_next/static/chunks/main-app-b34870c7a6a221f2.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/app/not-found-e09ae1819c905827.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/272-2141a66059ffccef.js",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/",
+      "https://faikerz.com/_next/static/chunks/397-360266a4064fa075.js",
+      "https://faikerz.com/_next/static/chunks/b789cd00-e11c91874b76ec40.js",
+      "https://faikerz.com/_next/static/chunks/app/(main)/layout-e81a6c89e267002c.js",
+      "https://faikerz.com/_next/static/chunks/231-9392facb919f7b4c.js"
+    ],
+    "storage_keys": {
+      "local": [],
+      "session": []
+    },
+    "completeness": "policy_filtered"
+  },
+  "analyze_web_bundle": {
+    "evidence_id": "ev_6e19d27d220930ba68af8d0d555d43622cfa9891eee1fd8aaaf372a5ea77f971",
+    "inferences": [
+      {
+        "kind": "vendor_fingerprint",
+        "value": "Next.js",
+        "confidence": "high"
+      },
+      {
+        "kind": "vendor_fingerprint",
+        "value": "Next.js",
+        "confidence": "high"
+      },
+      {
+        "kind": "vendor_fingerprint",
+        "value": "Next.js",
+        "confidence": "high"
+      },
+      {
+        "kind": "vendor_fingerprint",
+        "value": "React",
+        "confidence": "medium"
+      },
+      {
+        "kind": "endpoint_candidate",
+        "value": "lang",
+        "confidence": "low"
+      },
+      {
+        "kind": "endpoint_candidate",
+        "value": "lang",
+        "confidence": "low"
+      },
+      {
+        "kind": "endpoint_candidate",
+        "value": "key",
+        "confidence": "low"
+      },
+      {
+        "kind": "endpoint_candidate",
+        "value": "lang",
+        "confidence": "low"
+      },
+      {
+        "kind": "vendor_fingerprint",
+        "value": "React",
+        "confidence": "medium"
+      }
+    ],
+    "unknowns": [
+      "Local returned-reference projections were conservatively widened; effects include additional source-local candidates."
+    ]
+  },
+  "export_web_scripts": {
+    "evidence_id": "ev_fb25c3a3434796685cf32e996a7f944b5116c89e55b8084c780e743ac7e1a8f2"
+  },
+  "playwright_crawl": {
+    "pages": [
+      "https://faikerz.com/",
+      "https://faikerz.com/sselly",
+      "https://faikerz.com/blog",
+      "https://faikerz.com/contact",
+      "https://faikerz.com/signin?callbackUrl=/blog/write",
+      "https://faikerz.com/blog/6abcb41aac3ce532658e958e",
+      "https://faikerz.com/blog/68c24052680a127fca919896",
+      "https://faikerz.com/blog/68660ab7680a127fca919893",
+      "https://faikerz.com/signin",
+      "https://faikerz.com/blog/6861f959680a127fca919892",
+      "https://faikerz.com/blog/6854ed6357efa9316832ef19",
+      "https://faikerz.com/blog/6854e96d57efa9316832ef13",
+      "https://faikerz.com/blog/6854ed0d57efa9316832ef18",
+      "https://faikerz.com/blog/6854ea6f57efa9316832ef14",
+      "https://faikerz.com/blog/6854edcb57efa9316832ef1a"
+    ],
+    "third_party_hosts": {
+      "faikerz.com": 567,
+      "challenges.cloudflare.com": 3
+    },
+    "xhr_fetch": [
+      "GET https://faikerz.com/sselly",
+      "GET https://faikerz.com/blog",
+      "GET https://faikerz.com/contact",
+      "GET https://faikerz.com/blog/6abcb41aac3ce532658e958e",
+      "GET https://faikerz.com/blog/68c24052680a127fca919896",
+      "GET https://faikerz.com/blog/68660ab7680a127fca919893",
+      "GET https://faikerz.com/signin",
+      "GET https://faikerz.com/blog/write",
+      "GET https://faikerz.com/",
+      "GET https://faikerz.com/blog/6861f959680a127fca919892",
+      "GET https://faikerz.com/blog/6854ed6357efa9316832ef19",
+      "GET https://faikerz.com/blog/6854e96d57efa9316832ef13",
+      "GET https://faikerz.com/blog/6854ed0d57efa9316832ef18",
+      "GET https://faikerz.com/blog/6854ea6f57efa9316832ef14",
+      "GET https://faikerz.com/blog/6854edcb57efa9316832ef1a"
+    ]
+  }
+}
