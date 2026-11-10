@@ -12,17 +12,17 @@
 
 ## 1. 결론 요약
 
-| #   | 발견                                                                                                                                                                                                                                                                                                                                                         | 근거 수준                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------- |
-| 1   | CDX는 **little-endian TLV 트리**다. 헤더 28바이트 뒤에 _객체_(태그 bit15=1, 4바이트 ID, 0x0000으로 닫음)와 _속성_(태그, 길이, 데이터)이 재귀적으로 이어진다.                                                                                                                                                                                                 | 관찰(SDK, 샘플 바이트)           |
-| 2   | 실제 파일에서 **Document 객체의 태그와 ID는 생략**된다. 헤더 직후 곧바로 Document 속성(`CreationProgram="ChemDraw 7.0"` 등)이 나오고, 파일 끝의 `00 00`이 Document를 닫는다. SDK 본문은 "document object로 시작한다"고만 적어서 오해하기 쉽다.                                                                                                               | 관찰(샘플 3종 바이트 덤프)       |
-| 3   | 객체 타입은 **52종**(0x8000–0x8032와 Unknown 0x8FFF)이고, 속성 태그는 **400개**다(별칭 포함, 섹션 27개).                                                                                                                                                                                                                                                     | 도출(`CDXConstants.h` enum 평가) |
-| 4   | 헤더 주석의 hex 값은 **일부 틀렸다**. 예: `kCDXProp_Transparent`의 주석은 0x0011이지만 enum 값은 0x0012다. 주석으로 태그 표를 만드는 파서는 오동작할 수 있다.                                                                                                                                                                                                | 관찰                             |
-| 5   | 객체 모델은 `CDXObject → CDXGraphicObject → {Node, Bond, Text, Arrow, Spectrum, TLCPlate, PlasmidMap, …}`로 이어지는 **단일 상속 트리**이고, 클래스 관계는 67개다. 화학(분자)과 그림(도형, 화살표, TLC, 겔, 플라스미드)이 **같은 장면 그래프(scene graph)** 안에 함께 산다. 이 구조가 ChemDraw를 "분자 편집기"이면서 "과학 일러스트 도구"로 만드는 핵심이다. | 관찰 + 추론                      |
-| 6   | 원자(Node) 타입은 15종이다. Element 외에 ElementList, Nickname, Fragment, Formula, GenericNickname, Named/Anonymous AlternativeGroup, MultiAttachment, VariableAttachment, LinkNode, **Monomer**가 있다. Markush, 축약어, 바이오폴리머가 모두 *원자 노드의 변형*으로 표현된다.                                                                               | 관찰                             |
-| 7   | 결합 차수(BondOrder)는 26개 값이다. 1/2/3/4/5/6중, ½·1½·2½ 등 분수 차수, Dative, Ionic, Hydrogen, ThreeCenter, 쿼리용 SingleOrDouble/…/Any가 모두 **비트 플래그 조합**으로 들어 있다. 결합 표시(BondDisplay)는 차수와 **분리**되어 16종(Wedge, Hash, Wavy, Hollow, Dot 등)이다. 화학 의미와 렌더링 표현을 분리한 설계다.                                     | 관찰 + 추론                      |
-| 8   | 좌표 단위는 **1/65536 pt 고정소수점**(`CDXCoordinate`, INT32)이고, `CDXPoint2D`는 **y가 x보다 먼저** 저장된다. ACS 1996 스타일의 결합 길이 14.4 pt가 정수 943,718 단위로 정확히 표현된다.                                                                                                                                                                    | 관찰 + 도출                      |
-| 9   | ChemDraw를 Office에 OLE로 넣으면, OLE 저장소의 `CONTENTS` 스트림에 **CDX 바이트가 그대로** 저장된다. Ketcher가 PPTX를 열 때 `.bin` OLE 안의 `CONTENTS`를 꺼낸 뒤 base64 접두사 `VmpDRDAxMDAEAw`(= `VjCD0100\x04\x03`)로 ChemDraw 객체를 식별하는 코드가 이를 보여 준다(ketcher-react 3.14.0 `dist/index.js` 14809–14850행).                                  | 관찰(제3자 코드) + 추론          |
+| #   | 발견                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 근거 수준                        |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| 1   | CDX는 **little-endian TLV 트리**다. 헤더 28바이트 뒤에 _객체_(태그 bit15=1, 4바이트 ID, 0x0000으로 닫음)와 _속성_(태그, 길이, 데이터)이 재귀적으로 이어진다.                                                                                                                                                                                                                                                                                                                                                                                                                              | 관찰(SDK, 샘플 바이트)           |
+| 2   | 헤더는 언제나 28바이트이고, **마지막 6바이트(22–27)가 곧 Document 객체의 태그와 ID 자리**다. 최신 writer는 여기에 `00 80`+ID를 쓰고, CD5 호환(구형) writer는 0으로 둔다. 리더는 두 경우 모두 28바이트를 건너뛴 뒤 Document 속성부터 읽는다(Revvity `CDXWriteHeader`: "6 bytes worth of tags for the top-level document object", `ReadOneObject`: "pretend there was a document object"). 끝에는 Document를 닫는 `00 00` 뒤에 writer가 `00 00`을 하나 더 붙인다. 코퍼스 80개 중 28개가 최신형, 52개가 구형이었다. _(정정: 초판은 샘플 3개만 보고 "Document 태그/ID가 생략된다"고 적었다.)_ | 관찰(Revvity 코드 + 코퍼스 80개) |
+| 3   | 객체 타입은 **52종**(0x8000–0x8032와 Unknown 0x8FFF)이고, 속성 태그는 **400개**다(별칭 포함, 섹션 27개).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 도출(`CDXConstants.h` enum 평가) |
+| 4   | 헤더 주석의 hex 값은 **일부 틀렸다**. 예: `kCDXProp_Transparent`의 주석은 0x0011이지만 enum 값은 0x0012다. 주석으로 태그 표를 만드는 파서는 오동작할 수 있다.                                                                                                                                                                                                                                                                                                                                                                                                                             | 관찰                             |
+| 5   | 객체 모델은 `CDXObject → CDXGraphicObject → {Node, Bond, Text, Arrow, Spectrum, TLCPlate, PlasmidMap, …}`로 이어지는 **단일 상속 트리**이고, 클래스 관계는 67개다. 화학(분자)과 그림(도형, 화살표, TLC, 겔, 플라스미드)이 **같은 장면 그래프(scene graph)** 안에 함께 산다. 이 구조가 ChemDraw를 "분자 편집기"이면서 "과학 일러스트 도구"로 만드는 핵심이다.                                                                                                                                                                                                                              | 관찰 + 추론                      |
+| 6   | 원자(Node) 타입은 15종이다. Element 외에 ElementList, Nickname, Fragment, Formula, GenericNickname, Named/Anonymous AlternativeGroup, MultiAttachment, VariableAttachment, LinkNode, **Monomer**가 있다. Markush, 축약어, 바이오폴리머가 모두 *원자 노드의 변형*으로 표현된다.                                                                                                                                                                                                                                                                                                            | 관찰                             |
+| 7   | 결합 차수(BondOrder)는 26개 값이다. 1/2/3/4/5/6중, ½·1½·2½ 등 분수 차수, Dative, Ionic, Hydrogen, ThreeCenter, 쿼리용 SingleOrDouble/…/Any가 모두 **비트 플래그 조합**으로 들어 있다. 결합 표시(BondDisplay)는 차수와 **분리**되어 16종(Wedge, Hash, Wavy, Hollow, Dot 등)이다. 화학 의미와 렌더링 표현을 분리한 설계다.                                                                                                                                                                                                                                                                  | 관찰 + 추론                      |
+| 8   | 좌표 단위는 **1/65536 pt 고정소수점**(`CDXCoordinate`, INT32)이고, `CDXPoint2D`는 **y가 x보다 먼저** 저장된다. ACS 1996 스타일의 결합 길이 14.4 pt가 정수 943,718 단위로 정확히 표현된다.                                                                                                                                                                                                                                                                                                                                                                                                 | 관찰 + 도출                      |
+| 9   | ChemDraw를 Office에 OLE로 넣으면, OLE 저장소의 `CONTENTS` 스트림에 **CDX 바이트가 그대로** 저장된다. Ketcher가 PPTX를 열 때 `.bin` OLE 안의 `CONTENTS`를 꺼낸 뒤 base64 접두사 `VmpDRDAxMDAEAw`(= `VjCD0100\x04\x03`)로 ChemDraw 객체를 식별하는 코드가 이를 보여 준다(ketcher-react 3.14.0 `dist/index.js` 14809–14850행).                                                                                                                                                                                                                                                               | 관찰(제3자 코드) + 추론          |
 
 ---
 
@@ -31,13 +31,15 @@
 ```
 offset  size  내용
 0x00    8     "VjCD0100"            magic (56 6A 43 44 30 31 30 30)
-0x08    4     04 03 02 01           reserved (엔디언 확인용으로 보임, 추론)
-0x0C    16    00 × 16               reserved
-0x1C    …     Document의 속성/자식이 바로 이어짐 (Document 태그/ID 생략 — 관찰)
+0x08    4     04 03 02 01           바이트 순서 표지(01 02 03 04면 big-endian — Revvity 리더)
+0x0C    10    00 × 10               TOC 포인터 + reserved
+0x16    6     00 80 · id:u32        최신 writer: Document 태그+ID / 구형 writer: 00 × 6
+0x1C    …     Document의 속성/자식
               item := property | object
               property := tag:u16 (bit15=0) · len:u16 [len==0xFFFF → len:u32] · data[len]
               object   := tag:u16 (bit15=1) · id:u32 · item* · 0x0000
 …       2     00 00                 Document 종료
+…       2     00 00                 writer가 덧붙이는 종료 태그("7.0 really wants it")
 ```
 
 `dimethylamine.cdx`(820바이트)의 첫 40바이트를 관찰한 결과다.
@@ -157,17 +159,18 @@ ChemDraw 22.x 이하의 기본 MOL 내보내기는 V2000이었다. 23.0부터 **
 
 ## 6. 오픈소스 생태계의 CDX 지원 현황 (관찰)
 
-| 구현                                | 읽기                                         | 쓰기  | 근거                                                    |
-| ----------------------------------- | -------------------------------------------- | ----- | ------------------------------------------------------- |
-| Revvity 공개 코드(Glysade/chemdraw) | O(CDX/CDXML)                                 | O     | 본 문서 §3. RDKit에 선택 빌드                           |
-| RDKit                               | O(Revvity 파서, 선택 빌드) / CDXML 자체 파서 | —     | `CDXMLParser.h`, `hasChemDrawCDXSupport()`              |
-| Indigo / Ketcher                    | O(CDX, CDXML, base64 CDX)                    | O     | `indigoWorker.types.d.ts`의 `SupportedFormat.CDX/CDXML` |
-| Open Babel                          | O(CDX 기본)                                  | CDXML | Open Babel 문서                                         |
-| 이번 `cdx_dump.py`                  | O(트리/속성 덤프, 타입 기반 디코딩)          | —     | `tools/`                                                |
+| 구현                                | 읽기                                         | 쓰기           | 근거                                                    |
+| ----------------------------------- | -------------------------------------------- | -------------- | ------------------------------------------------------- |
+| Revvity 공개 코드(Glysade/chemdraw) | O(CDX/CDXML)                                 | O              | 본 문서 §3. RDKit에 선택 빌드                           |
+| RDKit                               | O(Revvity 파서, 선택 빌드) / CDXML 자체 파서 | —              | `CDXMLParser.h`, `hasChemDrawCDXSupport()`              |
+| Indigo / Ketcher                    | O(CDX, CDXML, base64 CDX)                    | O              | `indigoWorker.types.d.ts`의 `SupportedFormat.CDX/CDXML` |
+| Open Babel                          | O(CDX 기본)                                  | CDXML          | Open Babel 문서                                         |
+| 이번 `cdx_dump.py`                  | O(트리/속성 덤프, 타입 기반 디코딩)          | —              | `tools/`                                                |
+| 이번 `cdx-core`(TypeScript, P0)     | O(무손실, 타입 코덱, base64 CDX)             | O(바이트 동일) | `cdx-core/` — 코퍼스 80/80 바이트 동일 왕복             |
 
 **검증 범위와 한계**
 
-- `cdx_dump.py`는 SDK에 들어 있는 샘플 3개(165, 820, 그리고 `carbon.cdx`)로만 검증했다. 대형 실제 문서, 임베디드 그림(EMF/PNG), 스타일 런 여러 개짜리 텍스트, 빅엔디언(구 Mac) 파일은 **검증하지 않았다**.
+- 초판의 `cdx_dump.py`는 SDK 샘플 3개로만 검증했다. P0에서 RDKit·Indigo 테스트 데이터까지 넓힌 코퍼스 80개(980 KB, 임베디드 PNG·압축 EMF 포함)로 `cdx-core`와 교차 검증해 트리가 80/80 일치했다([cdx-core/README.md](cdx-core/README.md)). 실제 **ChemDraw 저장본**은 일부(ChemDraw 7.0 샘플 등)뿐이고 나머지는 Indigo·RDKit 테스트 파일이다. 빅엔디언(구 Mac) 실파일은 코퍼스에 없어 합성 테스트로만 검증했다.
 - `INT16`처럼 타입이 정해진 속성만 디코딩한다. 그 밖의 속성은 hex로 남겨 _의미를 지어내지 않는다_.
 - ChemDraw 데스크톱의 _렌더링_, _화학 경고_, _Struct=Name_ 같은 기능 코드는 이 공개 코드에 없다. 공개된 것은 파일 I/O 계층뿐이다.
 

@@ -6,21 +6,29 @@ tag table in Revvity's BSD-3 ChemDraw file-format code (CDXConstants.h).
 The tag table is regenerated into ``cdx_tags.json`` by ``extract_tags.py``.
 
 Format (little-endian):
-  header : "VjCD0100" + 04 03 02 01 + 16 zero bytes (28 bytes); the
-           Document object is implied, its properties follow directly
+  header : 28 bytes = "VjCD0100" + 04 03 02 01 + 10 reserved bytes + 6 bytes
+           that modern writers fill with the Document tag (00 80) and id and
+           legacy (CD5-compatible) writers leave zero. Either way the
+           Document's properties follow directly (Revvity CDXIO.cpp /
+           CDXDocument.cpp: "pretend there was a document object").
   item   : tag:u16
            tag & 0x8000 -> object  : id:u32, then nested items until tag 0x0000
            otherwise    -> property: len:u16 (0xFFFF => len:u32 follows), data
-  end    : 00 00
+  end    : 00 00 closes the Document; writers append one more 00 00
 
 Payloads are decoded only from the (Type) annotation that CDXConstants.h
 gives each property; anything else is reported as hex so the dump never
 invents meaning the specification does not give.
 
-Usage: python3 -I cdx_dump.py FILE.cdx [--json]
+Usage: python3 -I cdx_dump.py FILE.cdx [--json | --canonical]
+  --canonical  prints {o: tag, i: id, p: [[tag, hex], ...], c: [...]} in file
+               order, the format cdx-core's `canonical` command prints, so the
+               two independent readers can be compared.
+FILE may also be base64-wrapped CDX (".b64cdx").
 """
 from __future__ import annotations
 
+import base64
 import json
 import os
 import struct
@@ -69,10 +77,10 @@ def parse(buf: bytes):
     if buf[:8] != HEADER:
         raise CDXError("not a CDX file (bad magic)")
     pos = 28
-    # In real files the Document object's tag/ID are implied by the header:
-    # the first tagged items are Document properties (observed in the
-    # sample files shipped with the Revvity code), so model it explicitly.
-    root = {"object": "Document", "tag": "0x8000(implied)", "id": 0, "props": {}, "children": []}
+    # Header bytes 22..27 hold the Document tag and id in modern files.
+    doc_tag, doc_id = struct.unpack_from("<HI", buf, 22)
+    root = {"object": "Document", "tag": "0x8000", "id": doc_id if doc_tag == 0x8000 else 0,
+            "props": {}, "raw": [], "children": []}
     stack = [root]
 
     def need(n):
@@ -93,7 +101,7 @@ def parse(buf: bytes):
             oid = struct.unpack_from("<I", buf, pos)[0]
             pos += 4
             node = {"object": OBJ.get(tag, f"user/unknown 0x{tag:04x}"),
-                    "tag": f"0x{tag:04x}", "id": oid, "props": {}, "children": []}
+                    "tag": f"0x{tag:04x}", "id": oid, "props": {}, "raw": [], "children": []}
             stack[-1]["children"].append(node)
             stack.append(node)
             continue
@@ -109,7 +117,20 @@ def parse(buf: bytes):
         pos += length
         name = PROP.get(tag, f"0x{tag:04x}")
         stack[-1]["props"][name] = _decode(name, data)
+        stack[-1]["raw"].append([tag, data.hex()])
     return [root]
+
+
+def canonical(node) -> dict:
+    return {"o": int(node["tag"], 16), "i": node["id"], "p": node["raw"],
+            "c": [canonical(c) for c in node["children"]]}
+
+
+def load(path: str) -> bytes:
+    buf = open(path, "rb").read()
+    if buf[:8] == b"VmpDRDAx":  # base64("VjCD01")
+        buf = base64.b64decode(b"".join(buf.split()))
+    return buf
 
 
 def summarize(tree) -> dict:
@@ -133,12 +154,22 @@ def render(nodes, depth=0, out=None):
     return out
 
 
+def _all(nodes):
+    for n in nodes:
+        yield n
+        yield from _all(n["children"])
+
+
 def main(argv):
     if len(argv) < 2:
         print(__doc__)
         return 2
-    tree = parse(open(argv[1], "rb").read())
-    if "--json" in argv:
+    tree = parse(load(argv[1]))
+    if "--canonical" in argv:
+        print(json.dumps(canonical(tree[0]), separators=(",", ":")))
+    elif "--json" in argv:
+        for n in _all(tree):
+            n.pop("raw", None)
         print(json.dumps({"summary": summarize(tree), "tree": tree}, indent=1))
     else:
         print("\n".join(render(tree)))

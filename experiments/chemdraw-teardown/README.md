@@ -12,11 +12,12 @@
 5. **경쟁 엔진 실측**: Ketcher, Indigo, RDKit, OpenChemLib, JSME, Kekule, SmilesDrawer를 REA로 정적 분석하고, WASM 커널 5종의 구조를 수집했다. → [05-engine-teardown-rea.md](05-engine-teardown-rea.md)
 6. **기능 원자 매트릭스**: 기능 32개를 ChemDraw와 경쟁 제품 9종에 매핑했다. → [06-capability-matrix.md](06-capability-matrix.md)
 7. **재구성 설계도**: 오픈소스 부품으로 같은 기능 블록을 독자 구현하는 아키텍처와 로드맵을 제시했다. → [07-clone-blueprint.md](07-clone-blueprint.md)
+8. **P0 구현 — CDX 왕복 코어**: 의존성 없는 TypeScript 리더/라이터를 만들었다. 코퍼스 80개(980 KB)가 바이트까지 동일하게 왕복되고, 독립 Python 리더와 트리가 80/80 일치한다. → [cdx-core/README.md](cdx-core/README.md)
 
 ## 핵심 발견 10가지
 
 1. **ChemDraw는 "화학 의미를 가진 벡터 출판 도구"다.** 네이티브 포맷 속성 400개 가운데 원자·결합·분자 속성은 약 20%다. 나머지는 문서, 그래픽, 실험 도구(TLC, 겔, 플라스미드, 스펙트럼)다(04 §2.2).
-2. **CDX = little-endian TLV 객체 트리.** 실제 파일에서는 Document 객체의 태그와 ID가 생략되고, 헤더 바로 뒤에 Document 속성이 온다. 또 헤더 주석의 hex 값 일부가 실제 enum 값과 다르다(04 §1).
+2. **CDX = little-endian TLV 객체 트리.** 28바이트 헤더의 마지막 6바이트가 Document 태그와 ID 자리다(최신 writer는 채우고 구형은 0). 헤더 주석의 hex 값 일부는 실제 enum 값과 다르다(04 §1).
 3. **Office 락인 메커니즘 확인.** OLE `CONTENTS` 스트림에 CDX 바이트가 그대로 들어 있다. Ketcher가 PPTX 안의 ChemDraw 객체를 `VmpDRDAx…` 시그니처로 찾아내는 코드가 그 증거다(05 §2.1).
 4. Markush·축약어·단량체가 모두 **원자 노드 타입의 변형**이다(NodeType 15종). 결합의 화학 차수(26종)와 표시(16종)는 분리되어 있다(04 §4).
 5. 오픈소스 엔진만으로 ChemDraw 블록 대부분(편집, 화학 지능, 물성, 바이오폴리머, CDX 읽기)을 조립할 수 있다. 실질적인 해자는 **구조→IUPAC 이름, NMR 예측, 출판 스타일, Office OLE 편집**이다(05 §3, 06).
@@ -45,10 +46,11 @@ experiments/chemdraw-teardown/
 ├── 05-engine-teardown-rea.md
 ├── 06-capability-matrix.md
 ├── 07-clone-blueprint.md
+├── cdx-core/                CDX 왕복 코어(P0, TypeScript, 의존성 0)
 ├── tools/
 │   ├── extract_tags.py      CDXConstants.h → cdx_tags.json (C++ enum 평가)
 │   ├── cdx_tags.json        52 객체 / 400 속성 태그표(타입·설명 포함)
-│   ├── cdx_dump.py          의존성 없는 CDX 트리 덤퍼
+│   ├── cdx_dump.py          의존성 없는 CDX 트리 덤퍼(--canonical: cdx-core 교차 검증용)
 │   └── summarize_rea_js.py  REA JS Evidence → 커밋 가능한 요약
 └── evidence/
     ├── cdx-sample-dumps.txt
