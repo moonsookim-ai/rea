@@ -1,0 +1,111 @@
+{
+  "status": "complete",
+  "duration": "18643ms",
+  "evidence_id": "ev_abb23138bc0f1cf0fd7a6f99f3e06cdce988519f58e2230e01aaa15cae6e1996",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "b05727bd5a900f6c4cd86e109e38f03448420c10fba9fb57c961e1e526d3fec8"
+    }
+  },
+  "source_selection": {
+    "requested_paths": ["indigo-ketcher-separate-wasm.js"],
+    "unselected_files": 4
+  },
+  "statistics": {
+    "relevant_files": 5,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 117854,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 1,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 26112,
+    "findings": 25,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 36,
+    "edges": 35,
+    "module_nodes_by_namespace": {
+      "unresolved-reference": 22,
+      "source-module": 1,
+      "module-export": 1
+    },
+    "import_specifiers": [],
+    "endpoints": [
+      "[\"literal\",\"partial\",{\"start\":{\"line\":1,\"column\":3356},\"end\":{\"line\":1,\"column\":3432}},\"new URL(binaryFile, self.location.origin)\"]",
+      "[\"literal\",\"partial\",{\"start\":{\"line\":1,\"column\":852},\"end\":{\"line\":1,\"column\":890}},\"url\"]"
+    ]
+  },
+  "semantic_graph": {
+    "nodes": 19304,
+    "node_kinds": {
+      "expression": 13274,
+      "call-site": 1634,
+      "parameter": 1260,
+      "binding": 1100,
+      "property-slot": 891,
+      "function": 569,
+      "return-site": 508,
+      "literal": 39,
+      "task": 10,
+      "boundary": 6,
+      "module": 4,
+      "promise": 4,
+      "request": 2,
+      "timer": 2,
+      "response": 1
+    },
+    "relations": 17750,
+    "relation_kinds": {
+      "reads": 5603,
+      "aliases": 3998,
+      "defines": 2790,
+      "captures": 1805,
+      "reads-property": 1257,
+      "argument-to-parameter": 626,
+      "calls": 562,
+      "returns-to-call": 519,
+      "writes": 363,
+      "writes-property": 196,
+      "awaits": 10,
+      "coerces": 6,
+      "creates-promise": 4,
+      "schedules-timer": 2,
+      "supplies-request-field": 2,
+      "constructs-request": 2,
+      "chains": 1,
+      "returns-task": 1,
+      "consumed-by": 1,
+      "owns": 1,
+      "detaches-task": 1
+    },
+    "function_fingerprints": 557,
+    "unknowns": 6254,
+    "unknown_families": {
+      "data-flow": 2375,
+      "object-flow": 2270,
+      "call-flow": 1569,
+      "promise-ownership": 14,
+      "request": 5,
+      "boundary": 3,
+      "child-process": 3,
+      "closure": 3,
+      "timer": 3,
+      "configuration": 3,
+      "resource-lifecycle": 3,
+      "event": 3
+    }
+  },
+  "limitations": [
+    "Alias selection expansion was conservatively bounded (maximum 512 additional selector states); selected paths remain unknown.",
+    "Caller-selected source analysis leaves 4 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}

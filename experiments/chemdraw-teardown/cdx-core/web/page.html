@@ -1,0 +1,644 @@
+<title>CDX Bench</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+/>
+<style>
+  /* Layout: an instrument bench — chrome in cool slate, the drawing area stays a sheet of paper in both themes (structures are always black ink, like a printed figure). */
+  :root {
+    --bg: #e9eeee;
+    --panel: #f7f9f9;
+    --raised: #ffffff;
+    --paper: #ffffff;
+    --grid: #e4ebea;
+    --fg: #142321;
+    --muted: #586b68;
+    --line: #cfd9d7;
+    --accent: #0b6e66;
+    --accent-soft: #d6ecea;
+    --on-accent: #ffffff;
+    --warn: #a8510b;
+    --warn-soft: #fbead7;
+    --sel: #2563eb;
+    --font-ui:
+      "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-data:
+      "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --r: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1716;
+      --panel: #151f1e;
+      --raised: #1b2726;
+      --paper: #fbfcfb;
+      --grid: #e6ecea;
+      --fg: #e3ecea;
+      --muted: #93a6a3;
+      --line: #2b3a38;
+      --accent: #4fc2b6;
+      --accent-soft: #173a37;
+      --on-accent: #06201d;
+      --warn: #f0a35e;
+      --warn-soft: #3a2614;
+      --sel: #60a5fa;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1716;
+    --panel: #151f1e;
+    --raised: #1b2726;
+    --paper: #fbfcfb;
+    --grid: #e6ecea;
+    --fg: #e3ecea;
+    --muted: #93a6a3;
+    --line: #2b3a38;
+    --accent: #4fc2b6;
+    --accent-soft: #173a37;
+    --on-accent: #06201d;
+    --warn: #f0a35e;
+    --warn-soft: #3a2614;
+    --sel: #60a5fa;
+    color-scheme: dark;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  [hidden] {
+    display: none !important;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.45 var(--font-ui);
+    overflow: hidden;
+  }
+  .app {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 10px;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-right: auto;
+  }
+  .brand h1 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  .brand span {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  button,
+  select,
+  .file {
+    font: 500 13px var(--font-ui);
+    color: var(--fg);
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 6px 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  button:hover,
+  .file:hover {
+    border-color: var(--accent);
+  }
+  button:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  input:focus-visible,
+  .file:focus-within {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+  button.primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+  }
+  button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .file input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .menu {
+    position: relative;
+  }
+  .menu > div {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 4px;
+    display: grid;
+    min-width: 210px;
+    z-index: 20;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+  }
+  .menu > div button {
+    border: 0;
+    justify-content: space-between;
+    background: transparent;
+  }
+  .menu > div button:hover {
+    background: var(--accent-soft);
+  }
+  .menu kbd {
+    font: 11px var(--font-data);
+    color: var(--muted);
+  }
+  main {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) 330px;
+    gap: 10px;
+    min-height: 0;
+  }
+  .tools {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 6px 4px;
+    overflow-y: auto;
+  }
+  .tools hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 3px 2px;
+    width: calc(100% - 4px);
+  }
+  .tool {
+    width: 42px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    border-color: transparent;
+    background: transparent;
+    font: 600 13px var(--font-data);
+  }
+  .tool[aria-pressed="true"] {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--fg);
+  }
+  .tool svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .stage {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+    min-height: 0;
+    touch-action: none;
+    background-image: radial-gradient(
+      circle,
+      var(--grid) 1px,
+      transparent 1.2px
+    );
+    background-size: 18px 18px;
+  }
+  .stage svg.doc {
+    width: 100%;
+    height: 100%;
+    display: block;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .stage .status {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font: 12px var(--font-data);
+    color: #4d5e5b;
+    pointer-events: none;
+  }
+  .stage .status span {
+    background: rgb(255 255 255 / 0.85);
+    padding: 2px 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .stage .zoom {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    gap: 4px;
+  }
+  .stage .zoom button {
+    background: #fff;
+    color: #142321;
+    border-color: #cfd9d7;
+    padding: 4px 9px;
+  }
+  .stage .badge {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font: 12px var(--font-ui);
+    color: #586b68;
+    background: rgb(255 255 255 / 0.9);
+    border: 1px solid #cfd9d7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    max-width: calc(100% - 140px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .stage .inline-text {
+    position: absolute;
+    font: 13px var(--font-ui);
+    padding: 2px 4px;
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    background: #fff;
+    color: #142321;
+  }
+  aside {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 0;
+    min-width: 0;
+  }
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .tabs button {
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    padding: 9px 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .tabs button[aria-selected="true"] {
+    color: var(--fg);
+    border-bottom-color: var(--accent);
+  }
+  .pane {
+    padding: 12px;
+    overflow-y: auto;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    min-width: 0;
+  }
+  .pane h2 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .formula {
+    font: 500 22px var(--font-data);
+    letter-spacing: 0.01em;
+    overflow-wrap: anywhere;
+  }
+  .formula sub {
+    font-size: 0.68em;
+  }
+  dl.kv {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  dl.kv dt {
+    color: var(--muted);
+  }
+  dl.kv dd {
+    margin: 0;
+    font-family: var(--font-data);
+    text-align: right;
+  }
+  .bars {
+    display: grid;
+    gap: 4px;
+  }
+  .bars div {
+    display: grid;
+    grid-template-columns: 26px 1fr 58px;
+    gap: 8px;
+    align-items: center;
+    font: 12px var(--font-data);
+  }
+  .bars i {
+    display: block;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  .bars span:last-child {
+    text-align: right;
+  }
+  .warn {
+    background: var(--warn-soft);
+    color: var(--warn);
+    border-radius: var(--r);
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .ok {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  textarea,
+  input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    font: 12.5px/1.4 var(--font-data);
+    color: var(--fg);
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 8px;
+    resize: vertical;
+  }
+  .row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .hint {
+    color: var(--muted);
+    font-size: 12.5px;
+    margin: 0;
+  }
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .card {
+    background: #fff;
+    color: #142321;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 6px;
+    display: grid;
+    gap: 4px;
+    cursor: pointer;
+    text-align: left;
+    font: 11px var(--font-data);
+  }
+  .card svg {
+    width: 100%;
+    height: 90px;
+  }
+  .card:hover {
+    border-color: var(--accent);
+  }
+  .beads {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow-x: auto;
+  }
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgb(10 20 20 / 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 50;
+    padding: 16px;
+  }
+  .modal > div {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 80vh;
+    overflow: auto;
+    display: grid;
+    gap: 12px;
+  }
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 8px 14px;
+    border-radius: var(--r);
+    font-size: 13px;
+    z-index: 60;
+  }
+  @media (max-width: 860px) {
+    body {
+      overflow: auto;
+    }
+    .app {
+      height: auto;
+      min-height: 100%;
+    }
+    main {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 62vh auto;
+    }
+    .tools {
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px;
+    }
+    .tools hr {
+      width: auto;
+      border-top: 0;
+      border-left: 1px solid var(--line);
+      margin: 2px 3px;
+    }
+    .tool {
+      flex: 0 0 auto;
+    }
+    aside {
+      min-height: 420px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+    }
+  }
+</style>
+
+<div class="app">
+  <header>
+    <div class="brand">
+      <h1>CDX Bench</h1>
+      <span>ChemDraw-compatible sketcher · ACS 1996 style</span>
+    </div>
+    <div class="bar">
+      <label
+        class="file"
+        title="Open CDX, CDXML, MOL, SMILES, HELM or an Office file with ChemDraw objects"
+        >Open…<input
+          id="open"
+          type="file"
+          accept=".cdx,.b64cdx,.cdxml,.mol,.sdf,.smi,.txt,.helm,.pptx,.docx,.xlsx,.bin"
+      /></label>
+      <button id="new" type="button">New</button>
+      <button id="undo" type="button" title="Undo (Ctrl+Z)">Undo</button>
+      <button id="redo" type="button" title="Redo (Ctrl+Shift+Z)">Redo</button>
+      <button id="clean" type="button" title="Recompute 2D coordinates">
+        Clean up
+      </button>
+      <div class="menu">
+        <button
+          id="copy-btn"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Copy as ▾
+        </button>
+        <div id="copy-menu" hidden>
+          <button type="button" data-copy="smiles">
+            SMILES <kbd>.smi</kbd>
+          </button>
+          <button type="button" data-copy="mol">
+            MOL V2000 <kbd>.mol</kbd>
+          </button>
+          <button type="button" data-copy="cdxml">
+            CDXML <kbd>.cdxml</kbd>
+          </button>
+          <button type="button" data-copy="b64cdx">
+            CDX, base64 <kbd>.b64cdx</kbd>
+          </button>
+          <button type="button" data-copy="svg">
+            SVG markup <kbd>.svg</kbd>
+          </button>
+        </div>
+      </div>
+      <div class="menu" id="save-wrap" hidden>
+        <button
+          id="save-btn"
+          class="primary"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Save ▾
+        </button>
+        <div id="save-menu" hidden>
+          <button type="button" data-save="zip">
+            All formats <kbd>.zip</kbd>
+          </button>
+          <button type="button" data-save="svg">Picture <kbd>.svg</kbd></button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <nav class="tools" id="tools" aria-label="Drawing tools"></nav>
+    <section class="stage" id="stage" aria-label="Drawing">
+      <div class="badge" id="badge"></div>
+      <div class="zoom">
+        <button id="zoom-out" type="button" aria-label="Zoom out">−</button
+        ><button id="zoom-fit" type="button">Fit</button
+        ><button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+      </div>
+      <div class="status"><span id="hint"></span><span id="where"></span></div>
+    </section>
+    <aside>
+      <div class="tabs" role="tablist">
+        <button
+          role="tab"
+          type="button"
+          data-tab="analysis"
+          aria-selected="true"
+        >
+          Analysis
+        </button>
+        <button
+          role="tab"
+          type="button"
+          data-tab="formats"
+          aria-selected="false"
+        >
+          Formats
+        </button>
+        <button role="tab" type="button" data-tab="bio" aria-selected="false">
+          Biopolymer
+        </button>
+        <button
+          role="tab"
+          type="button"
+          data-tab="rgroup"
+          aria-selected="false"
+        >
+          R-groups
+        </button>
+      </div>
+      <div class="pane" id="pane"></div>
+    </aside>
+  </main>
+</div>
+<!--APP-->

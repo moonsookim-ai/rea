@@ -1,0 +1,149 @@
+{
+  "status": "complete",
+  "duration": "35052ms",
+  "evidence_id": "ev_0c5916bacc996cd7161b9f16566d0f9d172568d569c0f2e63596357dce53e507",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "7fc5bd5942cb7f5ad866a97eedb5a4f67a808e92918209540e668892e903e2de"
+    }
+  },
+  "source_selection": {
+    "requested_paths": [
+      "src/ArrayHelper.js",
+      "src/Atom.js",
+      "src/CanvasWrapper.js",
+      "src/Drawer.js",
+      "src/DrawerBase.js",
+      "src/Edge.js",
+      "src/FormulaToCommonName.js",
+      "src/GaussDrawer.js",
+      "src/Graph.js",
+      "src/Line.js",
+      "src/MathHelper.js",
+      "src/Options.js",
+      "src/Parser.js",
+      "src/PixelsToSvg.js",
+      "src/Reaction.js",
+      "src/ReactionDrawer.js",
+      "src/ReactionParser.js",
+      "src/Ring.js",
+      "src/RingConnection.js",
+      "src/SSSR.js",
+      "src/SmilesDrawer.js",
+      "src/SvgDrawer.js",
+      "src/SvgWrapper.js",
+      "src/ThemeManager.js",
+      "src/Vector2.js",
+      "src/Vertex.js"
+    ],
+    "unselected_files": 70
+  },
+  "statistics": {
+    "relevant_files": 96,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 469952,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 26,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 51015,
+    "findings": 187,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 371,
+    "edges": 379,
+    "module_nodes_by_namespace": {
+      "unresolved-reference": 82,
+      "module-export": 26,
+      "unresolved-semantic-module": 69,
+      "source-module": 26
+    },
+    "import_specifiers": [
+      "./ArrayHelper",
+      "./Atom",
+      "./CIP",
+      "./CanvasWrapper",
+      "./CycleBasis",
+      "./DrawerBase",
+      "./Edge",
+      "./FormulaToCommonName",
+      "./GaussDrawer",
+      "./Graph",
+      "./Line",
+      "./MathHelper",
+      "./Options",
+      "./Parser",
+      "./PixelsToSvg",
+      "./Reaction",
+      "./ReactionDrawer",
+      "./ReactionParser",
+      "./Ring",
+      "./RingConnection",
+      "./SSSR",
+      "./SvgDrawer",
+      "./SvgWrapper",
+      "./ThemeManager",
+      "./Vector2",
+      "./Vertex",
+      "chroma-js"
+    ],
+    "endpoints": ["[\"candidate\",\"H\"]", "[\"candidate\",\"C\"]"]
+  },
+  "semantic_graph": {
+    "nodes": 31444,
+    "node_kinds": {
+      "expression": 23650,
+      "call-site": 2395,
+      "binding": 1827,
+      "property-slot": 1744,
+      "parameter": 732,
+      "function": 510,
+      "return-site": 453,
+      "module": 75,
+      "literal": 30,
+      "boundary": 28
+    },
+    "relations": 24863,
+    "relation_kinds": {
+      "reads": 9078,
+      "aliases": 5623,
+      "defines": 3841,
+      "reads-property": 2740,
+      "captures": 1485,
+      "writes": 1217,
+      "writes-property": 227,
+      "argument-to-parameter": 222,
+      "calls": 204,
+      "returns-to-call": 198,
+      "coerces": 16,
+      "parses": 12
+    },
+    "function_fingerprints": 487,
+    "unknowns": 11682,
+    "unknown_families": {
+      "object-flow": 6368,
+      "data-flow": 2583,
+      "call-flow": 2285,
+      "boundary": 54,
+      "event": 49,
+      "closure": 49,
+      "child-process": 49,
+      "promise-ownership": 49,
+      "configuration": 49,
+      "request": 49,
+      "resource-lifecycle": 49,
+      "timer": 49
+    }
+  },
+  "limitations": [
+    "Caller-selected source analysis leaves 70 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}

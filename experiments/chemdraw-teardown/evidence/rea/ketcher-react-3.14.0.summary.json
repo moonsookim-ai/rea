@@ -1,0 +1,120 @@
+{
+  "status": "complete",
+  "duration": "39615ms",
+  "evidence_id": "ev_4df3670a965cd97e198f77cf1d49d012cf5a6127b530d5c88ca159173c7b0a8e",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "825d8894bbc33893532ded9bdb316cf831cda37e7589dae3fcdfff2d761777c1"
+    }
+  },
+  "source_selection": {
+    "requested_paths": ["dist/index.modern-435976ac.js"],
+    "unselected_files": 1052
+  },
+  "statistics": {
+    "relevant_files": 1053,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 3262490,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 1,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 106525,
+    "findings": 274,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 1667,
+    "edges": 2380,
+    "module_nodes_by_namespace": {
+      "unresolved-semantic-module": 34,
+      "unresolved-reference": 70,
+      "source-module": 1,
+      "module-export": 1
+    },
+    "import_specifiers": [
+      "@babel/runtime/helpers/asyncToGenerator",
+      "@babel/runtime/helpers/classCallCheck",
+      "@babel/runtime/helpers/createClass",
+      "@babel/runtime/helpers/defineProperty",
+      "@babel/runtime/helpers/objectWithoutProperties",
+      "@babel/runtime/helpers/slicedToArray",
+      "@babel/runtime/helpers/toConsumableArray",
+      "@babel/runtime/helpers/typeof",
+      "@babel/runtime/regenerator",
+      "@emotion/react",
+      "@emotion/react/jsx-runtime",
+      "@emotion/styled/base",
+      "@mui/material",
+      "@mui/material/Box",
+      "@mui/material/ButtonBase",
+      "@mui/material/Tooltip",
+      "@mui/material/styles",
+      "clsx",
+      "file-saver",
+      "ketcher-core",
+      "ketcher-react",
+      "lodash",
+      "lodash/map",
+      "lodash/omit",
+      "lodash/round",
+      "react",
+      "react-contexify",
+      "react-dom",
+      "react-dropzone",
+      "react-intersection-observer",
+      "react-redux",
+      "redux",
+      "redux-thunk",
+      "reselect"
+    ],
+    "endpoints": []
+  },
+  "semantic_graph": {
+    "nodes": 21045,
+    "node_kinds": {
+      "call-site": 6102,
+      "binding": 5332,
+      "expression": 2475,
+      "function": 2119,
+      "parameter": 2096,
+      "return-site": 1875,
+      "module": 1046
+    },
+    "relations": 13287,
+    "relation_kinds": {
+      "captures": 6976,
+      "defines": 2475,
+      "aliases": 1495,
+      "returns-to-call": 1203,
+      "calls": 1138
+    },
+    "function_fingerprints": 2116,
+    "unknowns": 32540,
+    "unknown_families": {
+      "object-flow": 9036,
+      "data-flow": 8399,
+      "call-flow": 5697,
+      "timer": 1048,
+      "child-process": 1045,
+      "boundary": 1045,
+      "configuration": 1045,
+      "request": 1045,
+      "promise-ownership": 1045,
+      "resource-lifecycle": 1045,
+      "event": 1045,
+      "closure": 1045
+    }
+  },
+  "limitations": [
+    "Alias selection expansion was conservatively bounded (maximum 512 additional selector states); selected paths remain unknown.",
+    "Caller-selected source analysis leaves 1052 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}
