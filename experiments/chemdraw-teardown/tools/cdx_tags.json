@@ -1,0 +1,2459 @@
+{
+  "source": "Revvity open-source ChemDraw file format code, chemdraw/CDXConstants.h (BSD-3-Clause)",
+  "objects": {
+    "0x8000": "Document",
+    "0x8001": "Page",
+    "0x8002": "Group",
+    "0x8003": "Fragment",
+    "0x8004": "Node",
+    "0x8005": "Bond",
+    "0x8006": "Text",
+    "0x8007": "Graphic",
+    "0x8008": "Curve",
+    "0x8009": "EmbeddedObject",
+    "0x800a": "NamedAlternativeGroup",
+    "0x800b": "TemplateGrid",
+    "0x800c": "RegistryNumber",
+    "0x800d": "ReactionScheme",
+    "0x800e": "ReactionStep",
+    "0x800f": "ObjectDefinition",
+    "0x8010": "Spectrum",
+    "0x8011": "ObjectTag",
+    "0x8012": "OleClientItem",
+    "0x8013": "Sequence",
+    "0x8014": "CrossReference",
+    "0x8015": "Splitter",
+    "0x8016": "Table",
+    "0x8017": "BracketedGroup",
+    "0x8018": "BracketAttachment",
+    "0x8019": "CrossingBond",
+    "0x801a": "Border",
+    "0x801b": "Geometry",
+    "0x801c": "Constraint",
+    "0x801d": "TLCPlate",
+    "0x801e": "TLCLane",
+    "0x801f": "TLCSpot",
+    "0x8020": "ChemicalProperty",
+    "0x8021": "Arrow",
+    "0x8022": "StoichiometryGrid",
+    "0x8023": "SGComponent",
+    "0x8024": "SGDatum",
+    "0x8025": "BioShape",
+    "0x8026": "PlasmidMap",
+    "0x8027": "PlasmidMarker",
+    "0x8028": "PlasmidRegion",
+    "0x8029": "RLogic",
+    "0x802a": "RLogicItem",
+    "0x802b": "Annotation",
+    "0x802c": "GEPPlate",
+    "0x802d": "GEPBand",
+    "0x802e": "Marker",
+    "0x802f": "GEPLane",
+    "0x8030": "DocumentProperties",
+    "0x8031": "Property",
+    "0x8032": "ColoredMolecularArea",
+    "0x8fff": "UnknownObject"
+  },
+  "properties": {
+    "0x0000": {
+      "name": "EndObject",
+      "section": "General properties",
+      "type": null,
+      "description": "Marks end of object."
+    },
+    "0x0001": {
+      "name": "CreationUserName",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "The name of the creator (program user's name) of the document. (CDXString)"
+    },
+    "0x0002": {
+      "name": "CreationDate",
+      "section": "General properties",
+      "type": "CDXDate",
+      "description": "The time of object creation. (CDXDate)"
+    },
+    "0x0003": {
+      "name": "CreationProgram",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "The name of the program, including version and platform, that created the associated CDX object. ChemDraw 4.0 uses ChemDraw 4.0 as the value of CreationProgram. (CDXString)"
+    },
+    "0x0004": {
+      "name": "ModificationUserName",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "The name of the last modifier (program user's name) of the document. (CDXString)"
+    },
+    "0x0005": {
+      "name": "ModificationDate",
+      "section": "General properties",
+      "type": "CDXDate",
+      "description": "Time of the last modification. (CDXDate)"
+    },
+    "0x0006": {
+      "name": "ModificationProgram",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "The name of the program, including version and platform, of the last program to perform a modification. ChemDraw 4.0 uses ChemDraw 4.0 as the value of CreationProgram. (CDXString)"
+    },
+    "0x0007": {
+      "name": "Unused1",
+      "section": "General properties",
+      "type": "obsolete",
+      "description": "Table of contents. (obsolete)"
+    },
+    "0x0008": {
+      "name": "Name",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "Name of an object. (CDXString)"
+    },
+    "0x0009": {
+      "name": "Comment",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "An arbitrary string intended to be meaningful to a user. (CDXString)"
+    },
+    "0x000a": {
+      "name": "ZOrder",
+      "section": "General properties",
+      "type": "INT16",
+      "description": "Back-to-front ordering index in 2D drawing. (INT16)"
+    },
+    "0x000b": {
+      "name": "RegistryNumber",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "A registry or catalog number of a molecule object. (CDXString)"
+    },
+    "0x000c": {
+      "name": "RegistryAuthority",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "A string that specifies the authority which issued a registry or catalog number. Some examples of registry authorities are CAS, Beilstein, Aldrich, and Merck. (CDXString)"
+    },
+    "0x000d": {
+      "name": "Unused2",
+      "section": "General properties",
+      "type": "obsolete",
+      "description": "Indicates that this object (the reference object) is an alias to an object elsewhere in the document (the target object). The attributes and contained objects should be taken from the target object. ("
+    },
+    "0x000e": {
+      "name": "RepresentsProperty",
+      "section": "General properties",
+      "type": "CDXRepresentsProperty",
+      "description": "Indicates that this object represents some property in some other object. (CDXRepresentsProperty)"
+    },
+    "0x000f": {
+      "name": "IgnoreWarnings",
+      "section": "General properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether chemical warnings should be suppressed on this object. (CDXBooleanImplied)"
+    },
+    "0x0010": {
+      "name": "ChemicalWarning",
+      "section": "General properties",
+      "type": "CDXString",
+      "description": "A warning concerning possible chemical problems with this object. (CDXString)"
+    },
+    "0x0011": {
+      "name": "Visible",
+      "section": "General properties",
+      "type": "CDXBoolean",
+      "description": "The object is visible if non-zero. (CDXBoolean)"
+    },
+    "0x0012": {
+      "name": "Transparent",
+      "section": "General properties",
+      "type": "CDXBoolean",
+      "description": "The object is transparent if non-zero. (CDXBoolean)"
+    },
+    "0x0013": {
+      "name": "SupersededBy",
+      "section": "General properties",
+      "type": "CDXObjectID",
+      "description": "The ID of the object that should be read instead of this one. (CDXObjectID)"
+    },
+    "0x0014": {
+      "name": "StructurePerspective",
+      "section": "General properties",
+      "type": "CDXBoolean",
+      "description": "The object shows perspective if non-zero. (CDXBoolean)"
+    },
+    "0x0100": {
+      "name": "FontTable",
+      "section": "Fonts",
+      "type": "CDXFontTable",
+      "description": "A list of fonts used in the document. (CDXFontTable)"
+    },
+    "0x0200": {
+      "name": "2DPosition",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The 2D location (in the order of vertical and horizontal locations) of an object. (CDXPoint2D)"
+    },
+    "0x0201": {
+      "name": "3DPosition",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of an object in CDX coordinate units. The precise meaning of this attribute varies depending on the type of "
+    },
+    "0x0202": {
+      "name": "2DExtent",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The width and height of an object in CDX coordinate units. The precise meaning of this attribute varies depending on the type of object. (CDXPoint2D)"
+    },
+    "0x0203": {
+      "name": "3DExtent",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The width, height, and depth of an object in CDX coordinate units (right-handed coordinate system). The precise meaning of this attribute varies depending on the type of object. (CDXPoint3D)"
+    },
+    "0x0204": {
+      "name": "BoundingBox",
+      "section": "Coordinates",
+      "type": "CDXRectangle",
+      "description": "The smallest rectangle that encloses the graphical representation of the object. (CDXRectangle)"
+    },
+    "0x0205": {
+      "name": "RotationAngle",
+      "section": "Coordinates",
+      "type": "INT32",
+      "description": "The angular orientation of an object in degrees * 65536. (INT32)"
+    },
+    "0x0206": {
+      "name": "BoundsInParent",
+      "section": "Coordinates",
+      "type": "CDXRectangle",
+      "description": "The bounds of this object in the coordinate system of its parent (used for pages within tables). (CDXRectangle)"
+    },
+    "0x0207": {
+      "name": "3DHead",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of the head of an object in CDX coordinate units. The precise meaning of this attribute varies depending on "
+    },
+    "0x0208": {
+      "name": "3DTail",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of the tail of an object in CDX coordinate units. The precise meaning of this attribute varies depending on "
+    },
+    "0x0209": {
+      "name": "TopLeft",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The location of the top-left corner of a quadrilateral object, possibly in a rotated or skewed frame. (CDXPoint2D)"
+    },
+    "0x020a": {
+      "name": "TopRight",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The location of the top-right corner of a quadrilateral object, possibly in a rotated or skewed frame. (CDXPoint2D)"
+    },
+    "0x020b": {
+      "name": "BottomRight",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The location of the bottom-right corner of a quadrilateral object, possibly in a rotated or skewed frame. (CDXPoint2D)"
+    },
+    "0x020c": {
+      "name": "BottomLeft",
+      "section": "Coordinates",
+      "type": "CDXPoint2D",
+      "description": "The location of the bottom-left corner of a quadrilateral object, possibly in a rotated or skewed frame. (CDXPoint2D)"
+    },
+    "0x020d": {
+      "name": "3DCenter",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of the logical center of an object in CDX coordinate units. The precise meaning of this attribute varies dep"
+    },
+    "0x020e": {
+      "name": "3DMajorAxisEnd",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of the end of the major axis of an object in CDX coordinate units. The precise meaning of this attribute var"
+    },
+    "0x020f": {
+      "name": "3DMinorAxisEnd",
+      "section": "Coordinates",
+      "type": "CDXPoint3D",
+      "description": "The 3D location (in the order of X-, Y-, and Z-locations in right-handed coordinate system) of the end of the minor axis of an object in CDX coordinate units. The precise meaning of this attribute var"
+    },
+    "0x0300": {
+      "name": "ColorTable",
+      "section": "Colors",
+      "type": "CDXColorTable",
+      "description": "The color palette used throughout the document. (CDXColorTable)"
+    },
+    "0x0301": {
+      "name": "ForegroundColor",
+      "section": "Colors",
+      "type": "UINT16",
+      "description": "The foreground color of an object represented as the two-based index into the object's color table. (UINT16)"
+    },
+    "0x0302": {
+      "name": "BackgroundColor",
+      "section": "Colors",
+      "type": "UINT16",
+      "description": "The background color of an object represented as the two-based index into the object's color table. (UINT16)"
+    },
+    "0x0303": {
+      "name": "FadePercent",
+      "section": "Colors",
+      "type": "INT16",
+      "description": "The percent by which to fade the fill color of the graphic (allowing for four significant figures so 1000 is 100.0%). (INT16)"
+    },
+    "0x0304": {
+      "name": "Unused8",
+      "section": "Colors",
+      "type": null,
+      "description": ""
+    },
+    "0x0305": {
+      "name": "Unused9",
+      "section": "Colors",
+      "type": null,
+      "description": ""
+    },
+    "0x0306": {
+      "name": "ForegroundAlpha",
+      "section": "Colors",
+      "type": "UINT16",
+      "description": "The alpha value of the foreground color. (UINT16)"
+    },
+    "0x0307": {
+      "name": "BackgroundAlpha",
+      "section": "Colors",
+      "type": "UINT16",
+      "description": "The alpha value of the background color. (UINT16)"
+    },
+    "0x0308": {
+      "name": "HighlightColor",
+      "section": "Colors",
+      "type": null,
+      "description": "The highlight color for an object"
+    },
+    "0x0400": {
+      "name": "Node_Type",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "The type of a node object. (INT16)"
+    },
+    "0x0401": {
+      "name": "Node_LabelDisplay",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The characteristics of node label display. (INT8)"
+    },
+    "0x0402": {
+      "name": "Node_Element",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "The atomic number of the atom representing this node. (INT16)"
+    },
+    "0x0403": {
+      "name": "Atom_ElementList",
+      "section": "Atom properties",
+      "type": "CDXElementList",
+      "description": "A list of atomic numbers. (CDXElementList)"
+    },
+    "0x0404": {
+      "name": "Atom_Formula",
+      "section": "Atom properties",
+      "type": "CDXFormula",
+      "description": "The composition of a node representing a fragment whose composition is known, but whose connectivity is not. For example, C<sub>4</sub>H<sub>9</sub> represents a mixture of the 4 butyl isomers. (CDXFo"
+    },
+    "0x0420": {
+      "name": "Atom_Isotope",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "The absolute isotopic mass of an atom (2 for deuterium, 14 for carbon-14). (INT16)"
+    },
+    "0x0421": {
+      "name": "Atom_Charge",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The atomic charge of an atom. (INT8)"
+    },
+    "0x0422": {
+      "name": "Atom_Radical",
+      "section": "Atom properties",
+      "type": "UINT8",
+      "description": "The atomic radical attribute of an atom. (UINT8)"
+    },
+    "0x0423": {
+      "name": "Atom_RestrictFreeSites",
+      "section": "Atom properties",
+      "type": "UINT8",
+      "description": "Indicates that up to the specified number of additional substituents are permitted on this atom. (UINT8)"
+    },
+    "0x0424": {
+      "name": "Atom_RestrictImplicitHydrogens",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies that implicit hydrogens are not allowed on this atom. (CDXBooleanImplied)"
+    },
+    "0x0425": {
+      "name": "Atom_RestrictRingBondCount",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The number of ring bonds attached to an atom. (INT8)"
+    },
+    "0x0426": {
+      "name": "Atom_RestrictUnsaturatedBonds",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "Indicates whether unsaturation should be present or absent. (INT8)"
+    },
+    "0x0427": {
+      "name": "Atom_RestrictRxnChange",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "If present, signifies that the reaction change of an atom must be as specified. (CDXBooleanImplied)"
+    },
+    "0x0428": {
+      "name": "Atom_RestrictRxnStereo",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The change of stereochemistry of an atom during a reaction. (INT8)"
+    },
+    "0x0429": {
+      "name": "Atom_AbnormalValence",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies that an abnormal valence for an atom is permitted. (CDXBooleanImplied)"
+    },
+    "0x042a": {
+      "name": "Unused3",
+      "section": "Atom properties",
+      "type": null,
+      "description": ""
+    },
+    "0x042b": {
+      "name": "Atom_NumHydrogens",
+      "section": "Atom properties",
+      "type": "UINT16",
+      "description": "The number of (explicit) hydrogens in a labeled atom consisting of one heavy atom and (optionally) the symbol H (e.g., CH<sub>3</sub>). (UINT16)"
+    },
+    "0x042c": {
+      "name": "Unused4",
+      "section": "Atom properties",
+      "type": null,
+      "description": ""
+    },
+    "0x042d": {
+      "name": "Unused5",
+      "section": "Atom properties",
+      "type": null,
+      "description": ""
+    },
+    "0x042e": {
+      "name": "Atom_HDot",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies the presence of an implicit hydrogen with stereochemistry specified equivalent to an explicit H atom with a wedged bond. (CDXBooleanImplied)"
+    },
+    "0x042f": {
+      "name": "Atom_HDash",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies the presence of an implicit hydrogen with stereochemistry specified equivalent to an explicit H atom with a hashed bond. (CDXBooleanImplied)"
+    },
+    "0x0430": {
+      "name": "Atom_Geometry",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The geometry of the bonds about this atom. (INT8)"
+    },
+    "0x0431": {
+      "name": "Atom_BondOrdering",
+      "section": "Atom properties",
+      "type": "CDXObjectIDArray",
+      "description": "An ordering of the bonds to this node, used for stereocenters, fragments, and named alternative groups with more than one attachment. (CDXObjectIDArray)"
+    },
+    "0x0432": {
+      "name": "Node_Attachments",
+      "section": "Atom properties",
+      "type": "CDXObjectIDArrayWithCounts",
+      "description": "For multicenter attachment nodes or variable attachment nodes, a list of IDs of the nodes which are multiply or variably attached to this node. (CDXObjectIDArrayWithCounts)"
+    },
+    "0x0433": {
+      "name": "Atom_GenericNickname",
+      "section": "Atom properties",
+      "type": "CDXString",
+      "description": "The name of the generic nickname. (CDXString)"
+    },
+    "0x0434": {
+      "name": "Atom_AltGroupID",
+      "section": "Atom properties",
+      "type": "CDXObjectID",
+      "description": "The ID of the alternative group object that describes this node. (CDXObjectID)"
+    },
+    "0x0435": {
+      "name": "Atom_RestrictSubstituentsUpTo",
+      "section": "Atom properties",
+      "type": "UINT8",
+      "description": "Indicates that substitution is restricted to no more than the specified value. (UINT8)"
+    },
+    "0x0436": {
+      "name": "Atom_RestrictSubstituentsExactly",
+      "section": "Atom properties",
+      "type": "UINT8",
+      "description": "Indicates that exactly the specified number of substituents must be present. (UINT8)"
+    },
+    "0x0437": {
+      "name": "Atom_CIPStereochemistry",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The node's absolute stereochemistry according to the Cahn-Ingold-Prelog system. (INT8)"
+    },
+    "0x0438": {
+      "name": "Atom_Translation",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "Provides for restrictions on whether a given node may match other more- or less-general nodes. (INT8)"
+    },
+    "0x0439": {
+      "name": "Atom_AtomNumber",
+      "section": "Atom properties",
+      "type": "CDXString",
+      "description": "Atom number, as text. (CDXString)"
+    },
+    "0x043a": {
+      "name": "Atom_ShowQuery",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the query indicator if non-zero. (CDXBoolean)"
+    },
+    "0x043b": {
+      "name": "Atom_ShowStereo",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the stereochemistry indicator if non-zero. (CDXBoolean)"
+    },
+    "0x043c": {
+      "name": "Atom_ShowAtomNumber",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the atom number if non-zero. (CDXBoolean)"
+    },
+    "0x043d": {
+      "name": "Atom_LinkCountLow",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "Low end of repeat count for link nodes. (INT16)"
+    },
+    "0x043e": {
+      "name": "Atom_LinkCountHigh",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "High end of repeat count for link nodes. (INT16)"
+    },
+    "0x043f": {
+      "name": "Atom_IsotopicAbundance",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "Isotopic abundance of this atom's isotope. (INT8)"
+    },
+    "0x0440": {
+      "name": "Atom_ExternalConnectionType",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "Type of external connection, for atoms of type kCDXNodeType_ExternalConnectionPoint. (INT8)"
+    },
+    "0x0441": {
+      "name": "Atom_GenericList",
+      "section": "Atom properties",
+      "type": "CDXGenericList",
+      "description": "A list of generic nicknames. (CDXGenericList)"
+    },
+    "0x0442": {
+      "name": "Atom_ShowTerminalCarbonLabels",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether terminal carbons (carbons with zero or one bond) should display a text label with the element symbol and appropriate hydrogens. (CDXBooleanImplied)"
+    },
+    "0x0443": {
+      "name": "Atom_ShowNonTerminalCarbonLabels",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether non-terminal carbons (carbons with more than one bond) should display a text label with the element symbol and appropriate hydrogens. (CDXBooleanImplied)"
+    },
+    "0x0444": {
+      "name": "Atom_HideImplicitHydrogens",
+      "section": "Atom properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether implicit hydrogens should be displayed on otherwise-atomic atom labels (NH2 versus N). (CDXBooleanImplied)"
+    },
+    "0x0445": {
+      "name": "Atom_ShowEnhancedStereo",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the enhanced stereochemistry indicator if non-zero. (CDXBoolean)"
+    },
+    "0x0446": {
+      "name": "Atom_EnhancedStereoType",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "The type of enhanced stereochemistry present on this atom. (INT8)"
+    },
+    "0x0447": {
+      "name": "Atom_EnhancedStereoGroupNum",
+      "section": "Atom properties",
+      "type": "INT16",
+      "description": "The group number associated with Or and And enhanced stereochemistry types. (INT16)"
+    },
+    "0x0448": {
+      "name": "Node_NeedsClean",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Does the node need to be cleaned (CDXBoolean)"
+    },
+    "0x0449": {
+      "name": "Atom_ResidueID",
+      "section": "Atom properties",
+      "type": "CDXString",
+      "description": "The residue ID as text. (CDXString)"
+    },
+    "0x044a": {
+      "name": "Atom_ShowResidueID",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the residue ID if non-zero. (CDXBoolean)"
+    },
+    "0x044b": {
+      "name": "Atom_ExternalConnectionNum",
+      "section": "Atom properties",
+      "type": "INT8",
+      "description": "Num of external connection, for atoms of type kCDXNodeType_ExternalConnectionPoint. (INT8)"
+    },
+    "0x044c": {
+      "name": "Atom_ShowAtomID",
+      "section": "Atom properties",
+      "type": "CDXBoolean",
+      "description": "Show the atom ID (CDXBoolean)"
+    },
+    "0x044d": {
+      "name": "Atom_AtomID",
+      "section": "Atom properties",
+      "type": "UINT32",
+      "description": "The atom ID (UINT32)"
+    },
+    "0x044e": {
+      "name": "Node_HydrogenBondAttachmentAtoms",
+      "section": "Atom properties",
+      "type": "CDXObjectIDArray",
+      "description": "The atoms in a monomer which connect to external hydrogen bonds. (CDXObjectIDArray)"
+    },
+    "0x044f": {
+      "name": "Node_HydrogenBonds",
+      "section": "Atom properties",
+      "type": "CDXObjectIDArray",
+      "description": "The external hydrogen bonds of this node. (CDXObjectIDArray)"
+    },
+    "0x0500": {
+      "name": "Mole_Racemic",
+      "section": "Molecule properties",
+      "type": "CDXBoolean",
+      "description": "Indicates that the molecule is a racemic mixture. (CDXBoolean)"
+    },
+    "0x0501": {
+      "name": "Mole_Absolute",
+      "section": "Molecule properties",
+      "type": "CDXBoolean",
+      "description": "Indicates that the molecule has known absolute configuration. (CDXBoolean)"
+    },
+    "0x0502": {
+      "name": "Mole_Relative",
+      "section": "Molecule properties",
+      "type": "CDXBoolean",
+      "description": "Indicates that the molecule has known relative stereochemistry, but unknown absolute configuration. (CDXBoolean)"
+    },
+    "0x0503": {
+      "name": "Mole_Formula",
+      "section": "Molecule properties",
+      "type": "CDXFormula",
+      "description": "The molecular formula representation of a molecule object. (CDXFormula)"
+    },
+    "0x0504": {
+      "name": "Mole_Weight",
+      "section": "Molecule properties",
+      "type": "FLOAT64",
+      "description": "The average molecular weight of a molecule object. (FLOAT64)"
+    },
+    "0x0505": {
+      "name": "Frag_ConnectionOrder",
+      "section": "Molecule properties",
+      "type": "CDXObjectIDArray",
+      "description": "An ordered list of attachment points within a fragment. (CDXObjectIDArray)"
+    },
+    "0x0506": {
+      "name": "Frag_SequenceType",
+      "section": "Molecule properties",
+      "type": "INT8",
+      "description": "The sequence type of the fragment, for fragments that represent sequences (peptides and nucleotides, primarily). (INT8)"
+    },
+    "0x0507": {
+      "name": "Frag_IsFromGuidedStereo",
+      "section": "Molecule properties",
+      "type": "CDXBoolean",
+      "description": "Is this fragment from Guided Stereo (CDXBoolean)"
+    },
+    "0x0508": {
+      "name": "Frag_IsComplement",
+      "section": "Molecule properties",
+      "type": "CDXBoolean",
+      "description": "Is this fragment a complementary RNA/DNA sequence fragment. (CDXBoolean)"
+    },
+    "0x0600": {
+      "name": "Bond_Order",
+      "section": "Bond properties",
+      "type": "INT16",
+      "description": "The order of a bond object. (INT16)"
+    },
+    "0x0601": {
+      "name": "Bond_Display",
+      "section": "Bond properties",
+      "type": "INT16",
+      "description": "The display type of a bond object. (INT16)"
+    },
+    "0x0602": {
+      "name": "Bond_Display2",
+      "section": "Bond properties",
+      "type": "INT16",
+      "description": "The display type for the second line of a double bond. (INT16)"
+    },
+    "0x0603": {
+      "name": "Bond_DoublePosition",
+      "section": "Bond properties",
+      "type": "INT16",
+      "description": "The position of the second line of a double bond. (INT16)"
+    },
+    "0x0604": {
+      "name": "Bond_Begin",
+      "section": "Bond properties",
+      "type": "CDXObjectID",
+      "description": "The ID of the CDX node object at the first end of a bond. (CDXObjectID)"
+    },
+    "0x0605": {
+      "name": "Bond_End",
+      "section": "Bond properties",
+      "type": "CDXObjectID",
+      "description": "The ID of the CDX node object at the second end of a bond. (CDXObjectID)"
+    },
+    "0x0606": {
+      "name": "Bond_RestrictTopology",
+      "section": "Bond properties",
+      "type": "INT8",
+      "description": "Indicates the desired topology of a bond in a query. (INT8)"
+    },
+    "0x0607": {
+      "name": "Bond_RestrictRxnParticipation",
+      "section": "Bond properties",
+      "type": "INT8",
+      "description": "Specifies that a bond is affected by a reaction. (INT8)"
+    },
+    "0x0608": {
+      "name": "Bond_BeginAttach",
+      "section": "Bond properties",
+      "type": "UINT8",
+      "description": "Indicates where within the Bond_Begin node a bond is attached. (UINT8)"
+    },
+    "0x0609": {
+      "name": "Bond_EndAttach",
+      "section": "Bond properties",
+      "type": "UINT8",
+      "description": "Indicates where within the Bond_End node a bond is attached. (UINT8)"
+    },
+    "0x060a": {
+      "name": "Bond_CIPStereochemistry",
+      "section": "Bond properties",
+      "type": "INT8",
+      "description": "The bond's absolute stereochemistry according to the Cahn-Ingold-Prelog system. (INT8)"
+    },
+    "0x060b": {
+      "name": "Bond_BondOrdering",
+      "section": "Bond properties",
+      "type": "CDXObjectIDArray",
+      "description": "Ordered list of attached bond IDs. (CDXObjectIDArray)"
+    },
+    "0x060c": {
+      "name": "Bond_ShowQuery",
+      "section": "Bond properties",
+      "type": "CDXBoolean",
+      "description": "Show the query indicator if non-zero. (CDXBoolean)"
+    },
+    "0x060d": {
+      "name": "Bond_ShowStereo",
+      "section": "Bond properties",
+      "type": "CDXBoolean",
+      "description": "Show the stereochemistry indicator if non-zero. (CDXBoolean)"
+    },
+    "0x060e": {
+      "name": "Bond_CrossingBonds",
+      "section": "Bond properties",
+      "type": "CDXObjectIDArray",
+      "description": "Unordered list of IDs of bonds that cross this one (either above or below). (CDXObjectIDArray)"
+    },
+    "0x060f": {
+      "name": "Bond_ShowRxn",
+      "section": "Bond properties",
+      "type": "CDXBoolean",
+      "description": "Show the reaction-change indicator if non-zero. (CDXBoolean)"
+    },
+    "0x0610": {
+      "name": "Bond_Connectivity",
+      "section": "Bond properties",
+      "type": "INT16",
+      "description": "Specify the bond connectivity style. (INT16)"
+    },
+    "0x0611": {
+      "name": "Bond_BeginExternalNum",
+      "section": "Bond properties",
+      "type": "INT8",
+      "description": "The external connection number at the first end of a bond. (INT8)"
+    },
+    "0x0612": {
+      "name": "Bond_EndExternalNum",
+      "section": "Bond properties",
+      "type": "INT8",
+      "description": "The external connection number at the second end of a bond. (INT8)"
+    },
+    "0x0613": {
+      "name": "Bond_Connectivity_Routed",
+      "section": "Bond properties",
+      "type": "CDXBoolean",
+      "description": "Specify whether the bond is routed (CDXBoolean)"
+    },
+    "0x0700": {
+      "name": "Text",
+      "section": "Text properties",
+      "type": "CDXString",
+      "description": "The text of a text object. (CDXString)"
+    },
+    "0x0701": {
+      "name": "Justification",
+      "section": "Text properties",
+      "type": "INT8",
+      "description": "The horizontal justification of a text object. (INT8)"
+    },
+    "0x0702": {
+      "name": "LineHeight",
+      "section": "Text properties",
+      "type": "UINT16",
+      "description": "The line height of a text object. (UINT16)"
+    },
+    "0x0703": {
+      "name": "WordWrapWidth",
+      "section": "Text properties",
+      "type": "INT16",
+      "description": "The word-wrap width of a text object. (INT16)"
+    },
+    "0x0704": {
+      "name": "LineStarts",
+      "section": "Text properties",
+      "type": "INT16ListWithCounts",
+      "description": "The number of lines of a text object followed by that many values indicating the zero-based text position of each line start. (INT16ListWithCounts)"
+    },
+    "0x0705": {
+      "name": "LabelAlignment",
+      "section": "Text properties",
+      "type": "INT8",
+      "description": "The alignment of the text with respect to the node position. (INT8)"
+    },
+    "0x0706": {
+      "name": "LabelLineHeight",
+      "section": "Text properties",
+      "type": "INT16",
+      "description": "Text line height for atom labels (INT16)"
+    },
+    "0x0707": {
+      "name": "CaptionLineHeight",
+      "section": "Text properties",
+      "type": "INT16",
+      "description": "Text line height for non-atomlabel text objects (INT16)"
+    },
+    "0x0708": {
+      "name": "InterpretChemically",
+      "section": "Text properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether to the text label should be interpreted chemically (if possible). (CDXBooleanImplied)"
+    },
+    "0x0709": {
+      "name": "UTF8Text",
+      "section": "Text properties",
+      "type": "CDXString",
+      "description": "UTF-8 representation of our text (CDXString)"
+    },
+    "0x0800": {
+      "name": "MacPrintInfo",
+      "section": "Document properties",
+      "type": "Unformatted",
+      "description": "The 120 byte Macintosh TPrint data associated with the CDX document object. Refer to Macintosh Toolbox manual for detailed description. (Unformatted)"
+    },
+    "0x0801": {
+      "name": "WinPrintInfo",
+      "section": "Document properties",
+      "type": "Unformatted",
+      "description": "The Windows DEVMODE structure associated with the CDX document object. (Unformatted)"
+    },
+    "0x0802": {
+      "name": "PrintMargins",
+      "section": "Document properties",
+      "type": "CDXRectangle",
+      "description": "The outer margins of the Document. (CDXRectangle)"
+    },
+    "0x0803": {
+      "name": "ChainAngle",
+      "section": "Document properties",
+      "type": "INT32",
+      "description": "The default chain angle setting in degrees * 65536. (INT32)"
+    },
+    "0x0804": {
+      "name": "BondSpacing",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The spacing between segments of a multiple bond, measured relative to bond length. (INT16)"
+    },
+    "0x0805": {
+      "name": "BondLength",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The default bond length. (CDXCoordinate)"
+    },
+    "0x0806": {
+      "name": "BoldWidth",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The default bold bond width. (CDXCoordinate)"
+    },
+    "0x0807": {
+      "name": "LineWidth",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The default line width. (CDXCoordinate)"
+    },
+    "0x0808": {
+      "name": "MarginWidth",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The default amount of space surrounding atom labels. (CDXCoordinate)"
+    },
+    "0x0809": {
+      "name": "HashSpacing",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The default spacing between hashed lines used in wedged hashed bonds. (CDXCoordinate)"
+    },
+    "0x080a": {
+      "name": "LabelStyle",
+      "section": "Document properties",
+      "type": "CDXFontStyle",
+      "description": "The default style for atom labels. (CDXFontStyle)"
+    },
+    "0x080b": {
+      "name": "CaptionStyle",
+      "section": "Document properties",
+      "type": "CDXFontStyle",
+      "description": "The default style for non-atomlabel text objects. (CDXFontStyle)"
+    },
+    "0x080c": {
+      "name": "CaptionJustification",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "The horizontal justification of a caption (non-atomlabel text object) (INT8)"
+    },
+    "0x080d": {
+      "name": "FractionalWidths",
+      "section": "Document properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether to use fractional width information when drawing text. (CDXBooleanImplied)"
+    },
+    "0x080e": {
+      "name": "Magnification",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The view magnification factor (INT16)"
+    },
+    "0x080f": {
+      "name": "WidthPages",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The width of the document in pages. (INT16)"
+    },
+    "0x0810": {
+      "name": "HeightPages",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The height of the document in pages. (INT16)"
+    },
+    "0x0811": {
+      "name": "DrawingSpaceType",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "The type of drawing space used for this document. (INT8)"
+    },
+    "0x0812": {
+      "name": "Width",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The width of an object in CDX coordinate units, possibly in a rotated or skewed frame. (CDXCoordinate)"
+    },
+    "0x0813": {
+      "name": "Height",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The height of an object in CDX coordinate units, possibly in a rotated or skewed frame. (CDXCoordinate)"
+    },
+    "0x0814": {
+      "name": "PageOverlap",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The amount of overlap of pages when a poster is tiled. (CDXCoordinate)"
+    },
+    "0x0815": {
+      "name": "Header",
+      "section": "Document properties",
+      "type": "CDXString",
+      "description": "The text of the header. (CDXString)"
+    },
+    "0x0816": {
+      "name": "HeaderPosition",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The vertical offset of the header baseline from the top of the page. (CDXCoordinate)"
+    },
+    "0x0817": {
+      "name": "Footer",
+      "section": "Document properties",
+      "type": "CDXString",
+      "description": "The text of the footer. (CDXString)"
+    },
+    "0x0818": {
+      "name": "FooterPosition",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The vertical offset of the footer baseline from the bottom of the page. (CDXCoordinate)"
+    },
+    "0x0819": {
+      "name": "PrintTrimMarks",
+      "section": "Document properties",
+      "type": "CDXBooleanImplied",
+      "description": "If present, trim marks are to printed in the margins. (CDXBooleanImplied)"
+    },
+    "0x081a": {
+      "name": "LabelStyleFont",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font family for atom labels. (INT16)"
+    },
+    "0x081b": {
+      "name": "CaptionStyleFont",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font style for captions (non-atom-label text objects). (INT16)"
+    },
+    "0x081c": {
+      "name": "LabelStyleSize",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font size for atom labels. (INT16)"
+    },
+    "0x081d": {
+      "name": "CaptionStyleSize",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font size for captions (non-atom-label text objects). (INT16)"
+    },
+    "0x081e": {
+      "name": "LabelStyleFace",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font style for atom labels. (INT16)"
+    },
+    "0x081f": {
+      "name": "CaptionStyleFace",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default font face for captions (non-atom-label text objects). (INT16)"
+    },
+    "0x0820": {
+      "name": "LabelStyleColor",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default color for atom labels (INT16)"
+    },
+    "0x0821": {
+      "name": "CaptionStyleColor",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "The default color for captions (non-atom-label text objects). (INT16)"
+    },
+    "0x0822": {
+      "name": "BondSpacingAbs",
+      "section": "Document properties",
+      "type": "CDXCoordinate",
+      "description": "The absolute distance between segments of a multiple bond. (CDXCoordinate)"
+    },
+    "0x0823": {
+      "name": "LabelJustification",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "The default justification for atom labels. (INT8)"
+    },
+    "0x0824": {
+      "name": "FixInplaceExtent",
+      "section": "Document properties",
+      "type": "CDXPoint2D",
+      "description": "Defines a size for OLE In-Place editing. (CDXPoint2D)"
+    },
+    "0x0825": {
+      "name": "Side",
+      "section": "Document properties",
+      "type": "INT16",
+      "description": "A specific side of an object (rectangle). (INT16)"
+    },
+    "0x0826": {
+      "name": "FixInplaceGap",
+      "section": "Document properties",
+      "type": "CDXPoint2D",
+      "description": "Defines a padding for OLE In-Place editing. (CDXPoint2D)"
+    },
+    "0x0827": {
+      "name": "CartridgeData",
+      "section": "Document properties",
+      "type": "Unformatted",
+      "description": "Transient data used by the CambridgeSoft Oracle Cartridge.  Should not be read or written by anyone other than the cartridge. (Unformatted)"
+    },
+    "0x0828": {
+      "name": "AminoAcidTermini",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "The default display style for amino-acid termini (INT8)"
+    },
+    "0x0829": {
+      "name": "ShowSequenceTermini",
+      "section": "Document properties",
+      "type": "CDXBooleanImplied",
+      "description": "Show sequence termini (CDXBooleanImplied)"
+    },
+    "0x082a": {
+      "name": "ShowSequenceBonds",
+      "section": "Document properties",
+      "type": "CDXBooleanImplied",
+      "description": "Show sequence bonds (CDXBooleanImplied)"
+    },
+    "0x082b": {
+      "name": "ResidueWrapCount",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "Number of residues per line (INT8)"
+    },
+    "0x082c": {
+      "name": "ResidueBlockCount",
+      "section": "Document properties",
+      "type": "INT8",
+      "description": "Number of residues per block (INT8)"
+    },
+    "0x082d": {
+      "name": "Unused10",
+      "section": "Document properties",
+      "type": "obsolete",
+      "description": "ResidueZigZag (obsolete)"
+    },
+    "0x082e": {
+      "name": "Unused11",
+      "section": "Document properties",
+      "type": "obsolete",
+      "description": "NumberResidueBlocks (obsolete)"
+    },
+    "0x082f": {
+      "name": "BondSpacingType",
+      "section": "Document properties",
+      "type": null,
+      "description": "select between using kCDXProp_BondSpacingAbs  and kCDXProp_BondSpacing ((INT8))"
+    },
+    "0x0830": {
+      "name": "LabelStyleFontName",
+      "section": "Document properties",
+      "type": null,
+      "description": "name of the label font - supersedes kCDXProp_LabelStyleFont"
+    },
+    "0x0831": {
+      "name": "CaptionStyleFontName",
+      "section": "Document properties",
+      "type": null,
+      "description": "name of the caption font - supersedes kCDXProp_CaptionStyleFont"
+    },
+    "0x0832": {
+      "name": "ShowSequenceUnlinkedBranches",
+      "section": "Document properties",
+      "type": "CDXBooleanImplied",
+      "description": "Show Unlinked Branches (CDXBooleanImplied)"
+    },
+    "0x0833": {
+      "name": "MonomerRenderingStyle",
+      "section": "Document properties",
+      "type": "CDXString",
+      "description": "Rendering style for monomers, \"graphic\" or \"label\" (CDXString)"
+    },
+    "0x0900": {
+      "name": "Window_IsZoomed",
+      "section": "Window properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether the main viewing window is zoomed (maximized). (CDXBooleanImplied)"
+    },
+    "0x0901": {
+      "name": "Window_Position",
+      "section": "Window properties",
+      "type": "CDXPoint2D",
+      "description": "The top-left position of the main viewing window. (CDXPoint2D)"
+    },
+    "0x0902": {
+      "name": "Window_Size",
+      "section": "Window properties",
+      "type": "CDXPoint2D",
+      "description": "Height and width of the document window. (CDXPoint2D)"
+    },
+    "0x0a00": {
+      "name": "Graphic_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of graphical object. (INT16)"
+    },
+    "0x0a01": {
+      "name": "Line_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of a line object. (INT16)"
+    },
+    "0x0a02": {
+      "name": "Arrow_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of arrow object, which represents line, arrow, arc, rectangle, or orbital. (INT16)"
+    },
+    "0x0a03": {
+      "name": "Rectangle_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of a rectangle object. (INT16)"
+    },
+    "0x0a04": {
+      "name": "Oval_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of an arrow object that represents a circle or ellipse. (INT16)"
+    },
+    "0x0a05": {
+      "name": "Orbital_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of orbital object. (INT16)"
+    },
+    "0x0a06": {
+      "name": "Bracket_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of symbol object. (INT16)"
+    },
+    "0x0a07": {
+      "name": "Symbol_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of symbol object. (INT16)"
+    },
+    "0x0a08": {
+      "name": "Curve_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of curve object. (INT16)"
+    },
+    "0x0a20": {
+      "name": "Arrowhead_Size",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The size of the arrow's head from the shaft to the outer corner (as a multiplier of line width * 100, so 12.5x the line width = 1250). (INT16)"
+    },
+    "0x0a21": {
+      "name": "Arc_AngularSize",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The size of an arc (in degrees * 10, so 90 degrees = 900). (INT16)"
+    },
+    "0x0a22": {
+      "name": "Bracket_LipSize",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The size of a bracket. (INT16)"
+    },
+    "0x0a23": {
+      "name": "Curve_Points",
+      "section": "Graphic object properties",
+      "type": "CDXCurvePoints",
+      "description": "The B&eacute;zier curve's control point locations. (CDXCurvePoints)"
+    },
+    "0x0a24": {
+      "name": "Bracket_Usage",
+      "section": "Graphic object properties",
+      "type": "INT8",
+      "description": "The syntactical chemical meaning of the bracket (SRU, mer, mon, xlink, etc). (INT8)"
+    },
+    "0x0a25": {
+      "name": "Polymer_RepeatPattern",
+      "section": "Graphic object properties",
+      "type": "INT8",
+      "description": "The head-to-tail connectivity of objects contained within the bracket. (INT8)"
+    },
+    "0x0a26": {
+      "name": "Polymer_FlipType",
+      "section": "Graphic object properties",
+      "type": "INT8",
+      "description": "The flip state of objects contained within the bracket. (INT8)"
+    },
+    "0x0a27": {
+      "name": "BracketedObjects",
+      "section": "Graphic object properties",
+      "type": "CDXObjectIDArray",
+      "description": "The set of objects contained in a BracketedGroup. (CDXObjectIDArray)"
+    },
+    "0x0a28": {
+      "name": "Bracket_RepeatCount",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The number of times a multiple-group BracketedGroup is repeated. (INT16)"
+    },
+    "0x0a29": {
+      "name": "Bracket_ComponentOrder",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The component order associated with a BracketedGroup. (INT16)"
+    },
+    "0x0a2a": {
+      "name": "Bracket_SRULabel",
+      "section": "Graphic object properties",
+      "type": "CDXString",
+      "description": "The label associated with a BracketedGroup that represents an SRU. (CDXString)"
+    },
+    "0x0a2b": {
+      "name": "Bracket_GraphicID",
+      "section": "Graphic object properties",
+      "type": "CDXObjectID",
+      "description": "The ID of a graphical object (bracket, brace, or parenthesis) associated with a Bracket Attachment. (CDXObjectID)"
+    },
+    "0x0a2c": {
+      "name": "Bracket_BondID",
+      "section": "Graphic object properties",
+      "type": "CDXObjectID",
+      "description": "The ID of a bond that crosses a Bracket Attachment. (CDXObjectID)"
+    },
+    "0x0a2d": {
+      "name": "Bracket_InnerAtomID",
+      "section": "Graphic object properties",
+      "type": "CDXObjectID",
+      "description": "The ID of the node located within the Bracketed Group and attached to a bond that crosses a Bracket Attachment. (CDXObjectID)"
+    },
+    "0x0a2e": {
+      "name": "Curve_Points3D",
+      "section": "Graphic object properties",
+      "type": "CDXCurvePoints3D",
+      "description": "The B&eacute;zier curve's control point locations. (CDXCurvePoints3D)"
+    },
+    "0x0a2f": {
+      "name": "Arrowhead_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of the arrowhead. (INT16)"
+    },
+    "0x0a30": {
+      "name": "Arrowhead_CenterSize",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The size of the arrow's head from the tip to the back of the head (as a percentage of line width, so 12.5x the line width = 1250). (UINT16)"
+    },
+    "0x0a31": {
+      "name": "Arrowhead_Width",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The half-width of the arrow's head (as a percentage of line width, so 12.5x the line width = 1250). (UINT16)"
+    },
+    "0x0a32": {
+      "name": "ShadowSize",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The size of the object's shadow (as a percentage of line width, so 4x the line width = 400). (UINT16)"
+    },
+    "0x0a33": {
+      "name": "Arrow_ShaftSpacing",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The width of the space between a multiple-component arrow shaft, as in an equilibrium arrow (as a percentage of line width, so 3x the line width = 300). (UINT16)"
+    },
+    "0x0a34": {
+      "name": "Arrow_EquilibriumRatio",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The ratio of the length of the left component of an equilibrium arrow (viewed from the end to the start) to the right component (as a percentage, so 2x as long = 200). (UINT16)"
+    },
+    "0x0a35": {
+      "name": "Arrowhead_Head",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of arrowhead at the head of the arrow or end of the curve. (INT16)"
+    },
+    "0x0a36": {
+      "name": "Arrowhead_Tail",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of arrowhead at the tail of the arrow or start of the curve. (INT16)"
+    },
+    "0x0a37": {
+      "name": "Fill_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of the fill, for objects that can be filled. (INT16)"
+    },
+    "0x0a38": {
+      "name": "Curve_Spacing",
+      "section": "Graphic object properties",
+      "type": "UINT16",
+      "description": "The width of the space between a a Doubled curve (as a percentage of line width, so 3x the line width = 300). (UINT16)"
+    },
+    "0x0a39": {
+      "name": "Closed",
+      "section": "Graphic object properties",
+      "type": "CDXBoolean",
+      "description": "Signifies whether curve describes a closed shape (as opposed to an open line). (CDXBoolean)"
+    },
+    "0x0a3a": {
+      "name": "Arrow_Dipole",
+      "section": "Graphic object properties",
+      "type": "CDXBoolean",
+      "description": "Signifies whether the arrow is a dipole arrow. (CDXBoolean)"
+    },
+    "0x0a3b": {
+      "name": "Arrow_NoGo",
+      "section": "Graphic object properties",
+      "type": "INT8",
+      "description": "Signifies whether arrow is a no-go arrow, and the type of no-go (crossed-through or hashed-out) if so. (INT8)"
+    },
+    "0x0a3c": {
+      "name": "CornerRadius",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The radius of the rounded corner of a rounded rectangle (as a percentage of line width, so 6x the line width = 600). (INT16)"
+    },
+    "0x0a3d": {
+      "name": "Frame_Type",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The type of the frame around the graphic. (INT16)"
+    },
+    "0x0a3e": {
+      "name": "Arrow_SourceID",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The id of the source of an electron pushing arrow. (INT16)"
+    },
+    "0x0a3f": {
+      "name": "Arrow_TargetID",
+      "section": "Graphic object properties",
+      "type": "INT16",
+      "description": "The id of the target of an electron pushing arrow. (INT16)"
+    },
+    "0x0a40": {
+      "name": "Arrow_IsSmart_Deleted",
+      "section": "Graphic object properties",
+      "type": "CDXBoolean, deleted",
+      "description": "Whether arrow is Smart (CDXBoolean, deleted)"
+    },
+    "0x0a60": {
+      "name": "Picture_Edition",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "The section information (SectionHandle) of the Macintosh Publish & Subscribe edition embedded in the CDX picture object. (Unformatted)"
+    },
+    "0x0a61": {
+      "name": "Picture_EditionAlias",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "The alias information of the Macintosh Publish & Subscribe edition embedded in the CDX picture object. (Unformatted)"
+    },
+    "0x0a62": {
+      "name": "MacPICT",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A Macintosh PICT data object. (Unformatted)"
+    },
+    "0x0a63": {
+      "name": "WindowsMetafile",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A Microsoft Windows Metafile object. (Unformatted)"
+    },
+    "0x0a64": {
+      "name": "OLEObject",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "An OLE object. (Unformatted)"
+    },
+    "0x0a65": {
+      "name": "EnhancedMetafile",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A Microsoft Windows Enhanced Metafile object. (Unformatted)"
+    },
+    "0x0a66": {
+      "name": "Compressed_MacPICT",
+      "section": "Embedded pictures",
+      "type": "GZIP compressed, BASE64 encoded",
+      "description": "A Macintosh PICT data object. (GZIP compressed, BASE64 encoded)"
+    },
+    "0x0a67": {
+      "name": "Compressed_WindowsMetafile",
+      "section": "Embedded pictures",
+      "type": "GZIP compressed, BASE64 encoded",
+      "description": "A Microsoft Windows Metafile object. (GZIP compressed, BASE64 encoded)"
+    },
+    "0x0a68": {
+      "name": "Compressed_OLEObject",
+      "section": "Embedded pictures",
+      "type": "GZIP compressed, BASE64 encoded",
+      "description": "An OLE object. (GZIP compressed, BASE64 encoded)"
+    },
+    "0x0a69": {
+      "name": "Compressed_EnhancedMetafile",
+      "section": "Embedded pictures",
+      "type": "GZIP compressed, BASE64 encoded",
+      "description": "A Microsoft Windows Enhanced Metafile object. (GZIP compressed, BASE64 encoded)"
+    },
+    "0x0a6a": {
+      "name": "Uncompressed_MacPICT_Size",
+      "section": "Embedded pictures",
+      "type": "INT32",
+      "description": "The size of the uncompressed MacPICT (INT32)"
+    },
+    "0x0a6b": {
+      "name": "Uncompressed_WindowsMetafile_Size",
+      "section": "Embedded pictures",
+      "type": "INT32",
+      "description": "The size of the uncompressed Metafile (INT32)"
+    },
+    "0x0a6c": {
+      "name": "Uncompressed_OLEObject_Size",
+      "section": "Embedded pictures",
+      "type": "INT32",
+      "description": "The size of the uncompressed OLE object (INT32)"
+    },
+    "0x0a6d": {
+      "name": "Uncompressed_EnhancedMetafile_Size",
+      "section": "Embedded pictures",
+      "type": "INT32",
+      "description": "The size of the uncompressed Enhanced Metafile (INT32)"
+    },
+    "0x0a6e": {
+      "name": "GIF",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary GIF data object. (Unformatted)"
+    },
+    "0x0a6f": {
+      "name": "TIFF",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary TIFF data object. (Unformatted)"
+    },
+    "0x0a70": {
+      "name": "PNG",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary PNG data object. (Unformatted)"
+    },
+    "0x0a71": {
+      "name": "JPEG",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary JPEG data object. (Unformatted)"
+    },
+    "0x0a72": {
+      "name": "BMP",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary BMP data object. (Unformatted)"
+    },
+    "0x0a73": {
+      "name": "PDF",
+      "section": "Embedded pictures",
+      "type": "Unformatted",
+      "description": "A binary PDF data object. (Unformatted)"
+    },
+    "0x0a80": {
+      "name": "Spectrum_XSpacing",
+      "section": "Spectrum properties",
+      "type": "FLOAT64",
+      "description": "The spacing in logical units (ppm, Hz, wavenumbers) between points along the X-axis of an evenly-spaced grid. (FLOAT64)"
+    },
+    "0x0a81": {
+      "name": "Spectrum_XLow",
+      "section": "Spectrum properties",
+      "type": "FLOAT64",
+      "description": "The first data point for the X-axis of an evenly-spaced grid. (FLOAT64)"
+    },
+    "0x0a82": {
+      "name": "Spectrum_XType",
+      "section": "Spectrum properties",
+      "type": "INT16",
+      "description": "The type of units the X-axis represents. (INT16)"
+    },
+    "0x0a83": {
+      "name": "Spectrum_YType",
+      "section": "Spectrum properties",
+      "type": "INT16",
+      "description": "The type of units the Y-axis represents. (INT16)"
+    },
+    "0x0a84": {
+      "name": "Spectrum_XAxisLabel",
+      "section": "Spectrum properties",
+      "type": "CDXString",
+      "description": "A label for the X-axis. (CDXString)"
+    },
+    "0x0a85": {
+      "name": "Spectrum_YAxisLabel",
+      "section": "Spectrum properties",
+      "type": "CDXString",
+      "description": "A label for the Y-axis. (CDXString)"
+    },
+    "0x0a86": {
+      "name": "Spectrum_DataPoint",
+      "section": "Spectrum properties",
+      "type": "FLOAT64",
+      "description": "The Y-axis values for the spectrum. It is an array of double values corresponding to X-axis values. (FLOAT64)"
+    },
+    "0x0a87": {
+      "name": "Spectrum_Class",
+      "section": "Spectrum properties",
+      "type": "INT16",
+      "description": "The type of spectrum represented. (INT16)"
+    },
+    "0x0a88": {
+      "name": "Spectrum_YLow",
+      "section": "Spectrum properties",
+      "type": "FLOAT64",
+      "description": "Y value to be used to offset data when storing XML. (FLOAT64)"
+    },
+    "0x0a89": {
+      "name": "Spectrum_YScale",
+      "section": "Spectrum properties",
+      "type": "FLOAT64",
+      "description": "Y scaling used to scale data when storing XML. (FLOAT64)"
+    },
+    "0x0aa0": {
+      "name": "TLC_OriginFraction",
+      "section": "TLC properties",
+      "type": "FLOAT64",
+      "description": "The distance of the origin line from the bottom of a TLC Plate, as a fraction of the total height of the plate. (FLOAT64)"
+    },
+    "0x0aa1": {
+      "name": "TLC_SolventFrontFraction",
+      "section": "TLC properties",
+      "type": "FLOAT64",
+      "description": "The distance of the solvent front from the top of a TLC Plate, as a fraction of the total height of the plate. (FLOAT64)"
+    },
+    "0x0aa2": {
+      "name": "TLC_ShowOrigin",
+      "section": "TLC properties",
+      "type": "CDXBoolean",
+      "description": "Show the origin line near the base of the TLC Plate if non-zero. (CDXBoolean)"
+    },
+    "0x0aa3": {
+      "name": "TLC_ShowSolventFront",
+      "section": "TLC properties",
+      "type": "CDXBoolean",
+      "description": "Show the solvent front line near the top of the TLC Plate if non-zero. (CDXBoolean)"
+    },
+    "0x0aa4": {
+      "name": "ShowBorders",
+      "section": "TLC properties",
+      "type": "CDXBoolean",
+      "description": "Show borders around the edges of the TLC Plate if non-zero. (CDXBoolean)"
+    },
+    "0x0aa5": {
+      "name": "TLC_ShowSideTicks",
+      "section": "TLC properties",
+      "type": "CDXBoolean",
+      "description": "Show tickmarks up the side of the TLC Plate if non-zero. (CDXBoolean)"
+    },
+    "0x0ab0": {
+      "name": "TLC_Rf",
+      "section": "TLC properties",
+      "type": "FLOAT64",
+      "description": "The Retention Factor of an individual spot. (FLOAT64)"
+    },
+    "0x0ab1": {
+      "name": "TLC_Tail",
+      "section": "TLC properties",
+      "type": "CDXCoordinate",
+      "description": "The length of the \"tail\" of an individual spot. (CDXCoordinate)"
+    },
+    "0x0ab2": {
+      "name": "TLC_ShowRf",
+      "section": "TLC properties",
+      "type": "CDXBoolean",
+      "description": "Show the spot's Retention Fraction (Rf) value if non-zero. (CDXBoolean)"
+    },
+    "0x0ab3": {
+      "name": "GEP_ShowScale",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Show the vertical ordinates"
+    },
+    "0x0ab4": {
+      "name": "GEP_ScaleUnit",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Show the scale unit name"
+    },
+    "0x0ab5": {
+      "name": "GEP_StartRange",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Range starting value"
+    },
+    "0x0ab6": {
+      "name": "GEP_EndRange",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Range end value"
+    },
+    "0x0ab7": {
+      "name": "GEP_ShowValue",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Show the band's value"
+    },
+    "0x0ab8": {
+      "name": "GEP_Value",
+      "section": "TLC properties",
+      "type": null,
+      "description": "Band's value"
+    },
+    "0x0ab9": {
+      "name": "GEP_LaneLabelsAngle",
+      "section": "TLC properties",
+      "type": null,
+      "description": ""
+    },
+    "0x0aba": {
+      "name": "GEP_AxisWidth",
+      "section": "TLC properties",
+      "type": null,
+      "description": ""
+    },
+    "0x0ac0": {
+      "name": "BioShape_Type",
+      "section": "BioShape",
+      "type": null,
+      "description": "The type ideintifier of the bio shape object"
+    },
+    "0x0ac1": {
+      "name": "1SubstrateEnzyme_ReceptorSize",
+      "section": "BioShape",
+      "type": null,
+      "description": "The receptor mouth size for the 1 substrate enzyme"
+    },
+    "0x0ac2": {
+      "name": "Receptor_NeckWidth",
+      "section": "BioShape",
+      "type": null,
+      "description": "The width or diameter of the receptor"
+    },
+    "0x0ac3": {
+      "name": "HelixProtein_CylinderWidth",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The width of one cylinder in a Helix Protein. (CDXCoordinate)"
+    },
+    "0x0ac4": {
+      "name": "HelixProtein_CylinderHeight",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The height of one cylinder in a Helix Protein. (CDXCoordinate)"
+    },
+    "0x0ac5": {
+      "name": "HelixProtein_CylinderDistance",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The spacing between cylinders in a Helix Protein. (CDXCoordinate)"
+    },
+    "0x0ac6": {
+      "name": "HelixProtein_PipeWidth",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The width of the pipes connecting cylinders in a Helix Protein. (CDXCoordinate)"
+    },
+    "0x0ac7": {
+      "name": "HelixProtein_Extra",
+      "section": "BioShape",
+      "type": null,
+      "description": "The extra length of the first and last pipe"
+    },
+    "0x0ac8": {
+      "name": "Membrane_ElementSize",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The diameter of the round elements in a Membrane or a Micelle. (CDXCoordinate)"
+    },
+    "0x0ac9": {
+      "name": "Membrane_StartAngle",
+      "section": "BioShape",
+      "type": null,
+      "description": "The start angle of the ellipse"
+    },
+    "0x0aca": {
+      "name": "Membrane_EndAngle",
+      "section": "BioShape",
+      "type": null,
+      "description": "The end angle of the ellipse"
+    },
+    "0x0acb": {
+      "name": "DNA_WaveLength",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The distance between peaks of the DNA ribbon. (CDXCoordinate)"
+    },
+    "0x0acc": {
+      "name": "DNA_WaveWidth",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The width of the DNA ribbon (parallel to the main axis, not perpendicular to the ribbon itself). (CDXCoordinate)"
+    },
+    "0x0acd": {
+      "name": "DNA_Offset",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The distance between corresponding parts of the two strands of a DNA ribbon (parallel to the main axis, not perpendicular to the ribbon itself). (CDXCoordinate)"
+    },
+    "0x0ace": {
+      "name": "DNA_WaveHeight",
+      "section": "BioShape",
+      "type": "CDXCoordinate",
+      "description": "The overall width of DNA ribbon, perpendicular to the main axis. (CDXCoordinate)"
+    },
+    "0x0acf": {
+      "name": "Gprotein_UpperHeight",
+      "section": "BioShape",
+      "type": null,
+      "description": "The height of the upper part"
+    },
+    "0x0b00": {
+      "name": "NamedAlternativeGroup_TextFrame",
+      "section": "Alternate Group properties",
+      "type": "CDXRectangle",
+      "description": "The bounding box of upper portion of the Named Alternative Group, containing the name of the group. (CDXRectangle)"
+    },
+    "0x0b01": {
+      "name": "NamedAlternativeGroup_GroupFrame",
+      "section": "Alternate Group properties",
+      "type": "CDXRectangle",
+      "description": "The bounding box of the lower portion of the Named Alternative Group, containing the definition of the group. (CDXRectangle)"
+    },
+    "0x0b02": {
+      "name": "NamedAlternativeGroup_Valence",
+      "section": "Alternate Group properties",
+      "type": "INT16",
+      "description": "The number of attachment points in each alternative in a named alternative group. (INT16)"
+    },
+    "0x0b80": {
+      "name": "GeometricFeature",
+      "section": "Geometry and Constraint properties",
+      "type": "INT8",
+      "description": "The type of the geometrical feature (point, line, plane, etc.). (INT8)"
+    },
+    "0x0b81": {
+      "name": "RelationValue",
+      "section": "Geometry and Constraint properties",
+      "type": "INT8",
+      "description": "The numeric relationship (if any) among the basis objects used to define this object. (INT8)"
+    },
+    "0x0b82": {
+      "name": "BasisObjects",
+      "section": "Geometry and Constraint properties",
+      "type": "CDXObjectIDArray",
+      "description": "An ordered list of objects used to define this object. (CDXObjectIDArray)"
+    },
+    "0x0b83": {
+      "name": "ConstraintType",
+      "section": "Geometry and Constraint properties",
+      "type": "INT8",
+      "description": "The constraint type (distance or angle). (INT8)"
+    },
+    "0x0b84": {
+      "name": "ConstraintMin",
+      "section": "Geometry and Constraint properties",
+      "type": "FLOAT64",
+      "description": "The minimum value of the constraint (FLOAT64)"
+    },
+    "0x0b85": {
+      "name": "ConstraintMax",
+      "section": "Geometry and Constraint properties",
+      "type": "FLOAT64",
+      "description": "The maximum value of the constraint (FLOAT64)"
+    },
+    "0x0b86": {
+      "name": "IgnoreUnconnectedAtoms",
+      "section": "Geometry and Constraint properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether unconnected atoms should be ignored within the exclusion sphere. (CDXBooleanImplied)"
+    },
+    "0x0b87": {
+      "name": "DihedralIsChiral",
+      "section": "Geometry and Constraint properties",
+      "type": "CDXBooleanImplied",
+      "description": "Signifies whether a dihedral is signed or unsigned. (CDXBooleanImplied)"
+    },
+    "0x0b88": {
+      "name": "PointIsDirected",
+      "section": "Geometry and Constraint properties",
+      "type": "CDXBooleanImplied",
+      "description": "For a point based on a normal, signifies whether it is in a specific direction relative to the reference point. (CDXBooleanImplied)"
+    },
+    "0x0bb0": {
+      "name": "ChemicalPropertyType",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": "UINT32",
+      "description": "The type of property (name, formula, molecular weight, etc.). (UINT32)"
+    },
+    "0x0bb1": {
+      "name": "ChemicalPropertyDisplayID",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": "CDXObjectID",
+      "description": "The display object for this property. (CDXObjectID)"
+    },
+    "0x0bb2": {
+      "name": "ChemicalPropertyIsActive",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": "CDXBoolean",
+      "description": "The editable-ness of this property. (CDXBoolean)"
+    },
+    "0x0bb3": {
+      "name": "ChemicalPropertyUnknown",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb4": {
+      "name": "ChemicalPropertyName",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb5": {
+      "name": "ChemicalPropertyFormula",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb6": {
+      "name": "ChemicalPropertyExactMass",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb7": {
+      "name": "ChemicalPropertyMolWeight",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb8": {
+      "name": "ChemicalPropertyMOverZ",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bb9": {
+      "name": "ChemicalPropertyAnalysis",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bba": {
+      "name": "ChemicalPropertyBoilingPoint",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bbb": {
+      "name": "ChemicalPropertyMeltingPoint",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bbc": {
+      "name": "ChemicalPropertyCriticalTemp",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bbd": {
+      "name": "ChemicalPropertyCriticalPressure",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bbe": {
+      "name": "ChemicalPropertyCriticalVolume",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bbf": {
+      "name": "ChemicalPropertyGibbsEnergy",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc0": {
+      "name": "ChemicalPropertyLogP",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc1": {
+      "name": "ChemicalPropertyMR",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc2": {
+      "name": "ChemicalPropertyHenrysLaw",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc3": {
+      "name": "ChemicalPropertyHeatOfForm",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc4": {
+      "name": "ChemicalPropertytPSA",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc5": {
+      "name": "ChemicalPropertyCLogP",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc6": {
+      "name": "ChemicalPropertyCMR",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc7": {
+      "name": "ChemicalPropertyLogS",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc8": {
+      "name": "ChemicalPropertyPKa",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bc9": {
+      "name": "ChemicalPropertyID",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bca": {
+      "name": "ChemicalPropertyFragmentLabel",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bcb": {
+      "name": "ChemicalPropertyTypeIUPACAtomNumber",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bcc": {
+      "name": "ChemicalPropertyIsChemicallySignificant",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0bcd": {
+      "name": "ChemicalPropertyExternalBonds",
+      "section": "Chemical property properties (also uses kCDXProp_BasisObjects",
+      "type": null,
+      "description": ""
+    },
+    "0x0c00": {
+      "name": "ReactionStep_Atom_Map",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "Represents pairs of mapped atom IDs; each pair is a reactant atom mapped to to a product atom. (CDXObjectIDArray)"
+    },
+    "0x0c01": {
+      "name": "ReactionStep_Reactants",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An order list of reactants present in the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c02": {
+      "name": "ReactionStep_Products",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An order list of products present in the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c03": {
+      "name": "ReactionStep_Plusses",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An ordered list of pluses used to separate components of the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c04": {
+      "name": "ReactionStep_Arrows",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An ordered list of arrows used to separate components of the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c05": {
+      "name": "ReactionStep_ObjectsAboveArrow",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An order list of objects above the arrow in the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c06": {
+      "name": "ReactionStep_ObjectsBelowArrow",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "An order list of objects below the arrow in the Reaction Step. (CDXObjectIDArray)"
+    },
+    "0x0c07": {
+      "name": "ReactionStep_Atom_Map_Manual",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "Represents pairs of mapped atom IDs; each pair is a reactant atom mapped to to a product atom. (CDXObjectIDArray)"
+    },
+    "0x0c08": {
+      "name": "ReactionStep_Atom_Map_Auto",
+      "section": "Reaction properties",
+      "type": "CDXObjectIDArray",
+      "description": "Represents pairs of mapped atom IDs; each pair is a reactant atom mapped to to a product atom. (CDXObjectIDArray)"
+    },
+    "0x0c09": {
+      "name": "RxnAutonumber_Style",
+      "section": "Reaction properties",
+      "type": "INT16",
+      "description": "Style in which to represent autonumbers. (INT16)"
+    },
+    "0x0c0a": {
+      "name": "RxnAutonumber_Conditions",
+      "section": "Reaction properties",
+      "type": "CDXBoolean",
+      "description": "Include reaction conditions in numbers. (CDXBoolean)"
+    },
+    "0x0c0b": {
+      "name": "RxnAutonumber_Start",
+      "section": "Reaction properties",
+      "type": "INT16",
+      "description": "Number at which to being numbering reaction components. (INT16)"
+    },
+    "0x0c0c": {
+      "name": "RxnAutonumber_Format",
+      "section": "Reaction properties",
+      "type": "CDXString",
+      "description": "Format in which to represent autonumbers. (CDXString)"
+    },
+    "0x0d00": {
+      "name": "ObjectTag_Type",
+      "section": "CDObjectTag properties",
+      "type": "INT16",
+      "description": "The tag's data type. (INT16)"
+    },
+    "0x0d01": {
+      "name": "Unused6",
+      "section": "CDObjectTag properties",
+      "type": "obsolete",
+      "description": "obsolete (obsolete)"
+    },
+    "0x0d02": {
+      "name": "Unused7",
+      "section": "CDObjectTag properties",
+      "type": "obsolete",
+      "description": "obsolete (obsolete)"
+    },
+    "0x0d03": {
+      "name": "ObjectTag_Tracking",
+      "section": "CDObjectTag properties",
+      "type": "CDXBoolean",
+      "description": "The tag will participate in tracking if non-zero. (CDXBoolean)"
+    },
+    "0x0d04": {
+      "name": "ObjectTag_Persistent",
+      "section": "CDObjectTag properties",
+      "type": "CDXBoolean",
+      "description": "The tag will be resaved to a CDX file if non-zero. (CDXBoolean)"
+    },
+    "0x0d05": {
+      "name": "ObjectTag_Value",
+      "section": "CDObjectTag properties",
+      "type": "varies",
+      "description": "The value is a INT32, FLOAT64 or unformatted string depending on the value of ObjectTag_Type. (varies)"
+    },
+    "0x0d06": {
+      "name": "Positioning",
+      "section": "CDObjectTag properties",
+      "type": "INT8",
+      "description": "How the indicator should be positioned with respect to its containing object. (INT8)"
+    },
+    "0x0d07": {
+      "name": "PositioningAngle",
+      "section": "CDObjectTag properties",
+      "type": "INT32",
+      "description": "Angular positioning, in radians * 65536. (INT32)"
+    },
+    "0x0d08": {
+      "name": "PositioningOffset",
+      "section": "CDObjectTag properties",
+      "type": "CDXPoint2D",
+      "description": "Offset positioning. (CDXPoint2D)"
+    },
+    "0x0e00": {
+      "name": "Sequence_Identifier",
+      "section": "CDSequence properties",
+      "type": "CDXString",
+      "description": "A unique (but otherwise random) identifier for a given Sequence object. (CDXString)"
+    },
+    "0x0f00": {
+      "name": "CrossReference_Container",
+      "section": "CDCrossReference properties",
+      "type": "CDXString",
+      "description": "An external object containing (as an embedded object) the document containing the Sequence object being referenced. (CDXString)"
+    },
+    "0x0f01": {
+      "name": "CrossReference_Document",
+      "section": "CDCrossReference properties",
+      "type": "CDXString",
+      "description": "An external document containing the Sequence object being referenced. (CDXString)"
+    },
+    "0x0f02": {
+      "name": "CrossReference_Identifier",
+      "section": "CDCrossReference properties",
+      "type": "CDXString",
+      "description": "A unique (but otherwise random) identifier for a given Cross-Reference object. (CDXString)"
+    },
+    "0x0f03": {
+      "name": "CrossReference_Sequence",
+      "section": "CDCrossReference properties",
+      "type": "CDXString",
+      "description": "A value matching the SequenceIdentifier of the Sequence object to be referenced. (CDXString)"
+    },
+    "0x1000": {
+      "name": "Template_PaneHeight",
+      "section": "Miscellaneous properties",
+      "type": "CDXCoordinate",
+      "description": "The height of the viewing window of a template grid. (CDXCoordinate)"
+    },
+    "0x1001": {
+      "name": "Template_NumRows",
+      "section": "Miscellaneous properties",
+      "type": "INT16",
+      "description": "The number of rows of the CDX TemplateGrid object. (INT16)"
+    },
+    "0x1002": {
+      "name": "Template_NumColumns",
+      "section": "Miscellaneous properties",
+      "type": "INT16",
+      "description": "The number of columns of the CDX TemplateGrid object. (INT16)"
+    },
+    "0x1100": {
+      "name": "Group_Integral",
+      "section": "Miscellaneous properties",
+      "type": "CDXBoolean",
+      "description": "The group is considered to be integral (non-subdivisible) if non-zero. (CDXBoolean)"
+    },
+    "0x1200": {
+      "name": "SG_DataType",
+      "section": "Stoichiometry Grid properties",
+      "type": "INT16",
+      "description": "The type of data being stored in for a given. (INT16)"
+    },
+    "0x1201": {
+      "name": "SG_PropertyType",
+      "section": "Stoichiometry Grid properties",
+      "type": "INT16",
+      "description": "The kind of stoichiometric property. (INT16)"
+    },
+    "0x1202": {
+      "name": "SG_DataValue",
+      "section": "Stoichiometry Grid properties",
+      "type": null,
+      "description": "The value is a FLOAT64 or unformatted string depending on SG_DataType"
+    },
+    "0x1203": {
+      "name": "SG_ComponentIsReactant",
+      "section": "Stoichiometry Grid properties",
+      "type": "CDXBoolean",
+      "description": "Component is reactant or product. (CDXBoolean)"
+    },
+    "0x1204": {
+      "name": "SG_ComponentIsHeader",
+      "section": "Stoichiometry Grid properties",
+      "type": "CDXBoolean",
+      "description": "Component is header column. (CDXBoolean)"
+    },
+    "0x1205": {
+      "name": "IsHidden",
+      "section": "Stoichiometry Grid properties",
+      "type": "CDXBoolean",
+      "description": "Property is hidden. (CDXBoolean)"
+    },
+    "0x1206": {
+      "name": "IsReadOnly",
+      "section": "Stoichiometry Grid properties",
+      "type": "CDXBoolean",
+      "description": "Property is read only. (CDXBoolean)"
+    },
+    "0x1207": {
+      "name": "IsEdited",
+      "section": "Stoichiometry Grid properties",
+      "type": "CDXBoolean",
+      "description": "Property value has been user edited. (CDXBoolean)"
+    },
+    "0x1208": {
+      "name": "SG_ComponentReferenceID",
+      "section": "Stoichiometry Grid properties",
+      "type": "INT16",
+      "description": "Reference ID of the hotlinked structure (INT16)"
+    },
+    "0x1300": {
+      "name": "PlasmidMap_NumberBasePairs",
+      "section": "Plasmid Map properties",
+      "type": "INT16",
+      "description": "The number of base pairs in the map (INT16)"
+    },
+    "0x1301": {
+      "name": "PlasmidMap_MarkerStart",
+      "section": "Plasmid Map properties",
+      "type": "INT16",
+      "description": "The position of the marker (INT16)"
+    },
+    "0x1302": {
+      "name": "PlasmidMap_MarkerOffset",
+      "section": "Plasmid Map properties",
+      "type": "CDXCoordinate",
+      "description": "The offset of the marker from the ring (CDXCoordinate)"
+    },
+    "0x1303": {
+      "name": "PlasmidMap_MarkerAngle",
+      "section": "Plasmid Map properties",
+      "type": "CDXCoordinate",
+      "description": "The angle of the marker from the ring (CDXCoordinate)"
+    },
+    "0x1304": {
+      "name": "PlasmidMap_RegionStart",
+      "section": "Plasmid Map properties",
+      "type": "INT16",
+      "description": "The start of the plasmid region (INT16)"
+    },
+    "0x1305": {
+      "name": "PlasmidMap_RegionEnd",
+      "section": "Plasmid Map properties",
+      "type": "INT16",
+      "description": "The end of the plasmid region (INT16)"
+    },
+    "0x1306": {
+      "name": "PlasmidMap_RegionOffset",
+      "section": "Plasmid Map properties",
+      "type": "CDXCoordinate",
+      "description": "The offset of the plasmid region (CDXCoordinate)"
+    },
+    "0x1307": {
+      "name": "PlasmidMap_RingRadius",
+      "section": "Plasmid Map properties",
+      "type": "CDXCoordinate",
+      "description": "The radius of the ring (CDXCoordinate)"
+    },
+    "0x1400": {
+      "name": "RLogic_Group",
+      "section": "RLogic properties",
+      "type": "string",
+      "description": "The name of the r-group in an RLogic (string)"
+    },
+    "0x1401": {
+      "name": "RLogic_Occurrence",
+      "section": "RLogic properties",
+      "type": "string",
+      "description": "The frequency of occurrence of a group in a query (string)"
+    },
+    "0x1402": {
+      "name": "RLogic_RestH",
+      "section": "RLogic properties",
+      "type": "bool",
+      "description": "Treatment of open valences (bool)"
+    },
+    "0x1403": {
+      "name": "RLogic_IfThenGroup",
+      "section": "RLogic properties",
+      "type": "string",
+      "description": "Conditional associated group name (string)"
+    },
+    "0x1500": {
+      "name": "Annotation_Keyword",
+      "section": "Annotation properties",
+      "type": "CDXString",
+      "description": "The keyword that identifies this annotation (CDXString)"
+    },
+    "0x1501": {
+      "name": "Annotation_Content",
+      "section": "Annotation properties",
+      "type": "CDXString",
+      "description": "The content of this annotation (CDXString)"
+    },
+    "0x1ff0": {
+      "name": "SplitterPositions",
+      "section": "Annotation properties",
+      "type": "CDXObjectIDArray",
+      "description": "An array of vertical positions that subdivide a page into regions. (CDXObjectIDArray)"
+    },
+    "0x1ff1": {
+      "name": "PageDefinition",
+      "section": "Annotation properties",
+      "type": "CDXObjectIDArray",
+      "description": "An array of vertical positions that subdivide a page into regions. (CDXObjectIDArray)"
+    },
+    "0x1600": {
+      "name": "Property_Rule",
+      "section": "Annotation properties",
+      "type": "int",
+      "description": "The type of property rule in CDXPropertyRule (int)"
+    },
+    "0x1601": {
+      "name": "Property_DataType",
+      "section": "Annotation properties",
+      "type": "int",
+      "description": "The type of property datatype in CDXPropertyDataType (int)"
+    },
+    "0x1602": {
+      "name": "Property_Value",
+      "section": "Annotation properties",
+      "type": "string",
+      "description": "The type of property value (string)"
+    }
+  }
+}

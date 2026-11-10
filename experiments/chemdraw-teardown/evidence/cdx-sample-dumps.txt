@@ -1,0 +1,36 @@
+# CDX sample dumps (tools/cdx_dump.py)
+# source: Revvity open-source ChemDraw file format repo (Glysade/chemdraw @ 5dd7432), docs/*.cdx
+
+## docs/dimethylaminesimple.cdx sha256=24d264ddaec1144f bytes=165
+Document#0 [0x8000(implied)] 
+  Page#1 [0x8001] 
+    Fragment#8 [0x8003] 
+      Node#5 [0x8004] 2DPosition={'x_pt': 148.5, 'y_pt': 164.25}, Node_Element=7
+      Node#6 [0x8004] 2DPosition={'x_pt': 177.478, 'y_pt': 172.015}
+      Bond#2 [0x8005] Bond_Begin=5, Bond_End=6
+      Node#4 [0x8004] 2DPosition={'x_pt': 119.522, 'y_pt': 172.015}
+      Bond#3 [0x8005] Bond_Begin=5, Bond_End=4, Bond_CIPStereochemistry=1
+
+object counts: {'Document': 1, 'Page': 1, 'Fragment': 1, 'Node': 3, 'Bond': 2}
+
+## docs/dimethylamine.cdx sha256=4987416b9939e100 bytes=820
+Document#0 [0x8000(implied)] CreationProgram=ChemDraw 7.0, Name=test.cdx, ColorTable=hex:0800ffffffffffff000000000000ffff00000000ffffffff00000000ffff0000..., Window_Position={'x_pt': 234.75, 'y_pt': 236.25}, Window_Size={'x_pt': 549.0, 'y_pt': 509.25}, PrintMargins={'top': 36.0, 'left': 36.0, 'bottom': 36.0, 'right': 36.0}, Atom_ShowQuery=1, Atom_ShowStereo=0, Atom_ShowAtomNumber=0, Bond_ShowQuery=1, Bond_ShowStereo=0, LabelLineHeight=0, CaptionLineHeight=1, ChainAngle=7864320, BondLength=1966080, BoldWidth=262144, LineWidth=65536, MarginWidth=131072, HashSpacing=176947, CaptionJustification=0, FractionalWidths=True, LabelJustification=5, BondSpacing=120, LabelStyle=hex:03006000c8000300, CaptionStyle=hex:04000000f0000300, MacPrintInfo=hex:00030000025802580000000018f51319ff9bff94196313800367052803fc0002..., BoundingBox={'top': 150.75, 'left': 116.84, 'bottom': 175.05, 'right': 180.16}, FontTable=hex:000002000300e4040500417269616c0400e4040f0054696d6573204e65772052...
+  Page#1 [0x8001] BoundingBox={'top': 150.75, 'left': 116.84, 'bottom': 175.05, 'right': 180.16}, WidthPages=1, HeightPages=1, HeaderPosition=2359296, FooterPosition=2359296, PrintTrimMarks=True
+    Fragment#8 [0x8003] BoundingBox={'top': 152.25, 'left': 118.34, 'bottom': 173.55, 'right': 178.66}
+      Node#5 [0x8004] ZOrder=1, 2DPosition={'x_pt': 148.5, 'y_pt': 164.25}, Atom_CIPStereochemistry=1, Node_Element=7, Atom_NumHydrogens=1
+        Text#17 [0x8006] ZOrder=6, Text=NH, LineStarts=hex:020002000300, LabelAlignment=4, 2DPosition={'x_pt': 145.688, 'y_pt': 159.808}, BoundingBox={'top': 152.25, 'left': 146.25, 'bottom': 168.0, 'right': 151.5}, LabelJustification=0
+      Node#6 [0x8004] ZOrder=2, 2DPosition={'x_pt': 177.478, 'y_pt': 172.015}, Atom_CIPStereochemistry=1
+      Bond#2 [0x8005] ZOrder=3, Bond_Begin=5, Bond_End=6, Bond_CIPStereochemistry=1
+      Node#4 [0x8004] ZOrder=4, 2DPosition={'x_pt': 119.522, 'y_pt': 172.015}, Atom_CIPStereochemistry=1
+      Bond#3 [0x8005] ZOrder=5, Bond_Begin=5, Bond_End=4, Bond_CIPStereochemistry=1
+
+object counts: {'Document': 1, 'Page': 1, 'Fragment': 1, 'Node': 3, 'Text': 1, 'Bond': 2}
+
+## docs/examples/carbon.cdx sha256=e0998893952223ca bytes=543
+Document#0 [0x8000(implied)] CreationProgram=ChemDraw 5.0, Name=Carbon.cdx, BoundingBox={'top': 144.0, 'left': 141.0, 'bottom': 155.0, 'right': 150.0}, ColorTable=hex:0800ffffffffffff000000000000ffff00000000ffffffff00000000ffff0000..., Window_Position={'x_pt': 167.0, 'y_pt': 206.0}, Window_Size={'x_pt': 571.0, 'y_pt': 375.0}, PrintMargins={'top': 36.0, 'left': 36.0, 'bottom': 36.0, 'right': 36.0}, ChainAngle=7864320, BondSpacing=120, BondLength=1966080, BoldWidth=262144, LineWidth=65536, MarginWidth=131072, HashSpacing=176896, LabelStyle=hex:03006000c8000200, CaptionStyle=hex:04000000f0000200, FractionalWidths=True, MacPrintInfo=hex:0003000002d002d0000000001df216eaff87ff7f1e7717670367052803fc0002..., FontTable=hex:000002000300e4040500417269616c0400e4040f0054696d6573204e65772052...
+  Page#1 [0x8001] 
+    Fragment#4 [0x8003] 
+      Node#2 [0x8004] ZOrder=0, 2DPosition={'x_pt': 145.0, 'y_pt': 149.25}, Node_LabelDisplay=1
+        Text#3 [0x8006] ZOrder=1, Text=C, LabelAlignment=1, 2DPosition={'x_pt': 141.898, 'y_pt': 152.75}, BoundingBox={'top': 146.0, 'left': 143.0, 'bottom': 153.0, 'right': 148.0}
+
+object counts: {'Document': 1, 'Page': 1, 'Fragment': 1, 'Node': 1, 'Text': 1}

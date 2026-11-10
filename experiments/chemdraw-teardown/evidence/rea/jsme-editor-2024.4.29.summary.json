@@ -1,0 +1,98 @@
+{
+  "status": "complete",
+  "duration": "174444ms",
+  "evidence_id": "ev_ff59c4659b1913bb90b2b4d8bead111259baf05cbca50460931166a5caa2a3bc",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "21b59ff1cce47d8e4948c81fc963a79fa4d3399f88b2589e500770348b19b7e2"
+    }
+  },
+  "source_selection": {
+    "requested_paths": [
+      "jsme.nocache.js",
+      "96E40B969193BD74B8A621486920E79C.cache.js"
+    ],
+    "unselected_files": 26
+  },
+  "statistics": {
+    "relevant_files": 28,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 1246989,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 2,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 704320,
+    "findings": 54,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 109,
+    "edges": 110,
+    "module_nodes_by_namespace": {
+      "unresolved-reference": 49,
+      "unresolved-semantic-module": 2,
+      "source-module": 2,
+      "module-export": 1
+    },
+    "import_specifiers": ["fs", "path"],
+    "endpoints": []
+  },
+  "semantic_graph": {
+    "nodes": 23080,
+    "node_kinds": {
+      "binding": 8674,
+      "call-site": 5453,
+      "parameter": 4162,
+      "expression": 2379,
+      "return-site": 1160,
+      "function": 1134,
+      "property-slot": 87,
+      "module": 27,
+      "boundary": 3,
+      "timer": 1
+    },
+    "relations": 47348,
+    "relation_kinds": {
+      "captures": 29453,
+      "returns-to-call": 9617,
+      "calls": 4785,
+      "reads": 1488,
+      "aliases": 1290,
+      "argument-to-parameter": 294,
+      "defines": 247,
+      "reads-property": 105,
+      "writes": 33,
+      "writes-property": 31,
+      "coerces": 3,
+      "cancels-timer": 1,
+      "schedules-timer": 1
+    },
+    "function_fingerprints": 1134,
+    "unknowns": 20843,
+    "unknown_families": {
+      "data-flow": 12849,
+      "object-flow": 7650,
+      "call-flow": 118,
+      "timer": 26,
+      "configuration": 25,
+      "child-process": 25,
+      "closure": 25,
+      "resource-lifecycle": 25,
+      "event": 25,
+      "boundary": 25,
+      "promise-ownership": 25,
+      "request": 25
+    }
+  },
+  "limitations": [
+    "Caller-selected source analysis leaves 26 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}

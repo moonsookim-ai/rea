@@ -1,0 +1,109 @@
+{
+  "status": "complete",
+  "duration": "24632ms",
+  "evidence_id": "ev_829551ce62e4f2e07244cba6d4a7a08327ea93c92e63fdc40795c79bc6e0c2c2",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "e9e85656b6f58f1959861c25791cf7cbb1dbed65ef8569c8726abc75ff7bdfdd"
+    }
+  },
+  "source_selection": {
+    "requested_paths": [
+      "src/core/kekule.chemUtils.js",
+      "src/core/kekule.common.js",
+      "src/core/kekule.configs.js",
+      "src/core/kekule.electrons.js",
+      "src/core/kekule.elements.js",
+      "src/core/kekule.exceptions.js",
+      "src/core/kekule.externalResMgr.js",
+      "src/core/kekule.metrics.js",
+      "src/core/kekule.reactions.js",
+      "src/core/kekule.root.js",
+      "src/core/kekule.structureBuilder.js",
+      "src/core/kekule.structures.js",
+      "src/core/kekule.valences.js",
+      "src/io/kekule.io.js"
+    ],
+    "unselected_files": 256
+  },
+  "statistics": {
+    "relevant_files": 270,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 651365,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 14,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 59271,
+    "findings": 156,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 676,
+    "edges": 696,
+    "module_nodes_by_namespace": {
+      "unresolved-reference": 148,
+      "source-module": 14
+    },
+    "import_specifiers": [],
+    "endpoints": [
+      "[\"candidate\",\"structure.implicitHydrogenEstimationStrategy\"]"
+    ]
+  },
+  "semantic_graph": {
+    "nodes": 36145,
+    "node_kinds": {
+      "expression": 24691,
+      "call-site": 3741,
+      "binding": 1791,
+      "property-slot": 1488,
+      "return-site": 1458,
+      "parameter": 1436,
+      "function": 1246,
+      "module": 264,
+      "literal": 19,
+      "boundary": 11
+    },
+    "relations": 27833,
+    "relation_kinds": {
+      "aliases": 12740,
+      "reads": 7803,
+      "defines": 4191,
+      "reads-property": 1831,
+      "writes": 852,
+      "writes-property": 162,
+      "captures": 160,
+      "argument-to-parameter": 33,
+      "calls": 28,
+      "returns-to-call": 22,
+      "coerces": 10,
+      "parses": 1
+    },
+    "function_fingerprints": 1246,
+    "unknowns": 16525,
+    "unknown_families": {
+      "object-flow": 6680,
+      "call-flow": 3983,
+      "data-flow": 3612,
+      "event": 250,
+      "request": 250,
+      "timer": 250,
+      "boundary": 250,
+      "configuration": 250,
+      "resource-lifecycle": 250,
+      "closure": 250,
+      "child-process": 250,
+      "promise-ownership": 250
+    }
+  },
+  "limitations": [
+    "Caller-selected source analysis leaves 256 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}

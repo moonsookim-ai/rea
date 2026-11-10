@@ -1,0 +1,73 @@
+{
+  "status": "partial (provider_timeout)",
+  "duration": "301366ms",
+  "evidence_id": "ev_70d5bdf23be09d51d99df6e81a094c3657b5468db0c9f1069ed0d06c5cb1983f",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "d2b9cabe4843d0e7b6234fe4dc8f573690ecf920133c04fe235a84c1ac2cac6e"
+    }
+  },
+  "source_selection": null,
+  "statistics": {
+    "relevant_files": 5,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 6083046,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 1,
+    "skipped_javascript_files": 2,
+    "visited_ast_nodes": 5697,
+    "findings": 57,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 11,
+    "edges": 10,
+    "module_nodes_by_namespace": {
+      "source-module": 1
+    },
+    "import_specifiers": [],
+    "endpoints": []
+  },
+  "semantic_graph": {
+    "nodes": 929,
+    "node_kinds": {
+      "expression": 886,
+      "binding": 21,
+      "function": 19,
+      "module": 3
+    },
+    "relations": 104,
+    "relation_kinds": {
+      "reads": 83,
+      "defines": 21
+    },
+    "function_fingerprints": 0,
+    "unknowns": 45,
+    "unknown_families": {
+      "data-flow": 23,
+      "child-process": 2,
+      "timer": 2,
+      "promise-ownership": 2,
+      "object-flow": 2,
+      "boundary": 2,
+      "event": 2,
+      "call-flow": 2,
+      "resource-lifecycle": 2,
+      "request": 2,
+      "closure": 2,
+      "configuration": 2
+    }
+  },
+  "limitations": [
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Source analysis was interrupted: Analysis operation timed out after 300000ms: analyze_javascript_application",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code.",
+    "dist/openchemlib.debug.js: Analysis operation timed out after 300000ms: analyze_javascript_application"
+  ]
+}

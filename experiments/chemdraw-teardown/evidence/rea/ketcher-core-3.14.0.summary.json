@@ -1,0 +1,114 @@
+{
+  "status": "complete",
+  "duration": "197691ms",
+  "evidence_id": "ev_57ae202fbd7f2347cc5f56656d7faf6b6ba2438e6e5b8c8f0cc224227d0ef4be",
+  "subject": {
+    "name": "package",
+    "digest": {
+      "sha256": "3062b02c6c1d8b60fedcbfd6c2b399ec20255f640fd0ad4b77e82a1345b59e65"
+    }
+  },
+  "source_selection": {
+    "requested_paths": ["dist/index.modern.js"],
+    "unselected_files": 491
+  },
+  "statistics": {
+    "relevant_files": 492,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 6854778,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 1,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 374747,
+    "findings": 940,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "application_graph": {
+    "nodes": 1768,
+    "edges": 1924,
+    "module_nodes_by_namespace": {
+      "module-export": 489,
+      "unresolved-reference": 263,
+      "unresolved-semantic-module": 25,
+      "source-module": 1
+    },
+    "import_specifiers": [
+      "@babel/runtime/helpers/assertThisInitialized",
+      "@babel/runtime/helpers/asyncToGenerator",
+      "@babel/runtime/helpers/classCallCheck",
+      "@babel/runtime/helpers/classPrivateFieldGet",
+      "@babel/runtime/helpers/classPrivateFieldSet",
+      "@babel/runtime/helpers/createClass",
+      "@babel/runtime/helpers/defineProperty",
+      "@babel/runtime/helpers/get",
+      "@babel/runtime/helpers/getPrototypeOf",
+      "@babel/runtime/helpers/inherits",
+      "@babel/runtime/helpers/objectWithoutProperties",
+      "@babel/runtime/helpers/possibleConstructorReturn",
+      "@babel/runtime/helpers/slicedToArray",
+      "@babel/runtime/helpers/toConsumableArray",
+      "@babel/runtime/helpers/typeof",
+      "@babel/runtime/helpers/wrapNativeSuper",
+      "@babel/runtime/regenerator",
+      "assert",
+      "d3",
+      "file-saver",
+      "lodash",
+      "lodash/fp",
+      "paper",
+      "react-device-detect",
+      "svgpath"
+    ],
+    "endpoints": [
+      "[\"candidate\",\"GET\"]",
+      "[\"literal\",\"partial\",{\"start\":{\"line\":59343,\"column\":17},\"end\":{\"line\":59350,\"column\":4}},\"requestUrl\"]",
+      "[\"candidate\",\"atomList\"]",
+      "[\"candidate\",\"substitutionCount\"]",
+      "[\"candidate\",\"label\"]",
+      "[\"candidate\",\"api_path\"]",
+      "[\"candidate\",\"rglabel\"]",
+      "[\"candidate\",\"POST\"]"
+    ]
+  },
+  "semantic_graph": {
+    "nodes": 20488,
+    "node_kinds": {
+      "binding": 9354,
+      "function": 6696,
+      "parameter": 3949,
+      "module": 489
+    },
+    "relations": 3938,
+    "relation_kinds": {
+      "captures": 3938
+    },
+    "function_fingerprints": 6696,
+    "unknowns": 25856,
+    "unknown_families": {
+      "data-flow": 13836,
+      "object-flow": 7140,
+      "promise-ownership": 488,
+      "child-process": 488,
+      "timer": 488,
+      "configuration": 488,
+      "event": 488,
+      "request": 488,
+      "resource-lifecycle": 488,
+      "call-flow": 488,
+      "boundary": 488,
+      "closure": 488
+    }
+  },
+  "limitations": [
+    "Alias selection expansion was conservatively bounded (maximum 512 additional selector states); selected paths remain unknown.",
+    "Caller-selected source analysis leaves 491 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Primitive string-byte budget exceeded (maximum 1048576 estimated JSON bytes).",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ]
+}
