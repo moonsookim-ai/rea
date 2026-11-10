@@ -29,11 +29,11 @@ def eval_enum(body: str, symbols: dict):
         name, expr, comment = m.group(1), m.group(2), m.group(3) or ""
         if expr:
             expr = expr.strip()
-            parts = re.match(r"(\w+)\s*(?:([+-])\s*(\w+))?$", expr)
+            parts = re.match(r"(-?\w+)\s*(?:([+-])\s*(\w+))?$", expr)
             if not parts:
                 continue
             base = parts.group(1)
-            val = int(base, 0) if re.match(r"^(0x[0-9a-fA-F]+|\d+)$", base) else symbols[base]
+            val = int(base, 0) if re.match(r"^-?(0x[0-9a-fA-F]+|\d+)$", base) else symbols[base]
             if parts.group(2):
                 delta = int(parts.group(3), 0)
                 val = val + delta if parts.group(2) == "+" else val - delta

@@ -17,6 +17,7 @@
 // encoding, object order and the trailer, so write(read(x)) === x.
 
 import { fail, ok, type Result } from "./result.ts";
+import { fromBase64 } from "./bytes.ts";
 
 export const MAGIC = "VjCD0100";
 export const HEADER_LENGTH = 28;
@@ -271,5 +272,5 @@ export function unwrapCdx(input: Uint8Array): Result<Uint8Array> {
   if (!/^[A-Za-z0-9+/]*={0,2}$/.test(text)) {
     return fail("not-base64", "invalid base64 alphabet", 0);
   }
-  return ok(new Uint8Array(Buffer.from(text, "base64")));
+  return ok(fromBase64(text));
 }

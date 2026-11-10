@@ -7,6 +7,7 @@
 import type { CdxDocument, CdxObject } from "./binary.ts";
 import { objectName, propertyName, walk } from "./model.ts";
 import { decodeValue, formatValue } from "./values.ts";
+import { toHex } from "./bytes.ts";
 
 export interface CanonicalObject {
   o: number;
@@ -15,7 +16,7 @@ export interface CanonicalObject {
   c: CanonicalObject[];
 }
 
-const hex = (b: Uint8Array): string => Buffer.from(b).toString("hex");
+const hex = (b: Uint8Array): string => toHex(b);
 
 export function canonicalTree(root: CdxObject): CanonicalObject {
   const convert = (obj: CdxObject): CanonicalObject => {

@@ -13,6 +13,7 @@
 6. **기능 원자 매트릭스**: 기능 32개를 ChemDraw와 경쟁 제품 9종에 매핑했다. → [06-capability-matrix.md](06-capability-matrix.md)
 7. **재구성 설계도**: 오픈소스 부품으로 같은 기능 블록을 독자 구현하는 아키텍처와 로드맵을 제시했다. → [07-clone-blueprint.md](07-clone-blueprint.md)
 8. **P0 구현 — CDX 왕복 코어**: 의존성 없는 TypeScript 리더/라이터를 만들었다. 코퍼스 80개(980 KB)가 바이트까지 동일하게 왕복되고, 독립 Python 리더와 트리가 80/80 일치한다. → [cdx-core/README.md](cdx-core/README.md)
+9. **P1–P5 구현과 배포 — CDX Bench**: CDXML 읽기/쓰기, 화학 계층(원자가·질량·SMILES·MOL·2D 배치), ACS 1996 SVG 렌더러, Office 속 ChemDraw 객체 추출, HELM·R-group 기초, 웹 편집기를 만들어 배포했다. → [CDX Bench](https://claude.ai/artifact/527hBGkZYsy82zK9kKNtVL) · [cdx-core/README.md](cdx-core/README.md)
 
 ## 핵심 발견 10가지
 
@@ -46,7 +47,7 @@ experiments/chemdraw-teardown/
 ├── 05-engine-teardown-rea.md
 ├── 06-capability-matrix.md
 ├── 07-clone-blueprint.md
-├── cdx-core/                CDX 왕복 코어(P0, TypeScript, 의존성 0)
+├── cdx-core/                CDX/CDXML 코어 + 화학·렌더·Office·HELM + 웹 편집기(P0–P5, 의존성 0)
 ├── tools/
 │   ├── extract_tags.py      CDXConstants.h → cdx_tags.json (C++ enum 평가)
 │   ├── cdx_tags.json        52 객체 / 400 속성 태그표(타입·설명 포함)

@@ -10,7 +10,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { readCdx, unwrapCdx, writeCdx, type CdxObject } from "../src/binary.ts";
-import { propertyName } from "../src/model.ts";
+import { fromCdxml, toCdxml } from "../src/cdxml.ts";
+import { chemistryDifference, propertyName } from "../src/model.ts";
 import { decodeValue, encodeValue } from "../src/values.ts";
 
 const listPath = process.env["CDX_CORPUS_LIST"];
@@ -80,5 +81,76 @@ test(
       }),
     );
     assert.ok(identical > 0);
+  },
+);
+
+const cdxmlListPath = process.env["CDXML_CORPUS_LIST"];
+const cdxmlFiles =
+  cdxmlListPath === undefined
+    ? []
+    : readFileSync(cdxmlListPath, "utf8")
+        .split("\n")
+        .map((l) => l.trim())
+        .filter((l) => l.length > 0);
+
+test(
+  "corpus CDX -> CDXML -> CDX keeps chemistry",
+  { skip: files.length === 0 ? "CDX_CORPUS_LIST not set" : false },
+  () => {
+    let checked = 0;
+    for (const file of files) {
+      const unwrapped = unwrapCdx(new Uint8Array(readFileSync(file)));
+      const doc = unwrapped.ok ? readCdx(unwrapped.value) : unwrapped;
+      if (!doc.ok) continue;
+      const back = fromCdxml(toCdxml(doc.value).text);
+      assert.ok(back.ok, file);
+      if (back.ok)
+        assert.equal(
+          chemistryDifference(doc.value, back.value.doc),
+          null,
+          file,
+        );
+      checked += 1;
+    }
+    console.log(JSON.stringify({ cdxToCdxml: checked }));
+  },
+);
+
+test(
+  "corpus CDXML -> CDX -> CDXML is stable",
+  { skip: cdxmlFiles.length === 0 ? "CDXML_CORPUS_LIST not set" : false },
+  () => {
+    let stable = 0;
+    let rejected = 0;
+    let skippedAttributes = 0;
+    for (const file of cdxmlFiles) {
+      const first = fromCdxml(readFileSync(file, "utf8"));
+      if (!first.ok) {
+        rejected += 1;
+        continue;
+      }
+      skippedAttributes += first.value.report.skipped.length;
+      const cdx = readCdx(writeCdx(first.value.doc));
+      assert.ok(cdx.ok, file);
+      if (!cdx.ok) continue;
+      const second = fromCdxml(toCdxml(cdx.value).text);
+      assert.ok(second.ok, file);
+      if (second.ok)
+        assert.equal(
+          chemistryDifference(first.value.doc, second.value.doc),
+          null,
+          file,
+        );
+      stable += 1;
+    }
+    console.log(
+      JSON.stringify({
+        cdxmlFiles: cdxmlFiles.length,
+        stable,
+        rejected,
+        skippedAttributes,
+      }),
+    );
+    assert.ok(stable > 0);
   },
 );

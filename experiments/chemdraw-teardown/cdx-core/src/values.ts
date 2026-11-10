@@ -9,6 +9,7 @@
 
 import type { ByteOrder, CdxProperty } from "./binary.ts";
 import { PROPERTY_TAGS } from "./tags.generated.ts";
+import { toHex } from "./bytes.ts";
 
 /** CDX coordinates are fixed point: 1 unit = 1/65536 point. */
 export const COORDINATE_UNIT = 65536;
@@ -511,7 +512,7 @@ export function formatValue(value: CdxValue): string {
     case "curve-points":
       return `${value.points.length / value.dims} points`;
     case "raw": {
-      const hex = Buffer.from(value.bytes.subarray(0, 24)).toString("hex");
+      const hex = toHex(value.bytes.subarray(0, 24));
       return `hex:${hex}${value.bytes.length > 24 ? "…" : ""}`;
     }
   }

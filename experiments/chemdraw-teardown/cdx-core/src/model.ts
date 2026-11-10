@@ -188,3 +188,56 @@ export function skeletonFormula(mol: Molecule): string {
     .map((s) => `${s}${counts.get(s) === 1 ? "" : String(counts.get(s))}`)
     .join("");
 }
+
+/**
+ * Describe the first chemistry difference between two documents, or return
+ * null when they agree: same fragments, atom ids/elements/charges/node
+ * types, bond ends and orders, and positions within `tolerancePt` points.
+ */
+export function chemistryDifference(
+  a: CdxDocument,
+  b: CdxDocument,
+  tolerancePt = 0.006,
+): string | null {
+  const ma = molecules(a);
+  const mb = molecules(b);
+  if (ma.length !== mb.length) return `fragments ${ma.length} != ${mb.length}`;
+  for (let i = 0; i < ma.length; i += 1) {
+    const x = ma[i];
+    const y = mb[i];
+    if (x === undefined || y === undefined) return `fragment ${i} missing`;
+    if (
+      x.atoms.length !== y.atoms.length ||
+      x.bonds.length !== y.bonds.length
+    ) {
+      return `fragment ${x.fragmentId}: ${x.atoms.length}/${x.bonds.length} vs ${y.atoms.length}/${y.bonds.length} atoms/bonds`;
+    }
+    for (let j = 0; j < x.atoms.length; j += 1) {
+      const p = x.atoms[j];
+      const q = y.atoms[j];
+      if (p === undefined || q === undefined) return `atom ${j} missing`;
+      const far =
+        (p.position === null) !== (q.position === null) ||
+        (p.position !== null &&
+          q.position !== null &&
+          (Math.abs(p.position.x - q.position.x) > tolerancePt ||
+            Math.abs(p.position.y - q.position.y) > tolerancePt));
+      if (
+        p.id !== q.id ||
+        p.element !== q.element ||
+        p.charge !== q.charge ||
+        p.nodeType !== q.nodeType ||
+        far
+      ) {
+        return `atom ${p.id}: ${JSON.stringify(p)} vs ${JSON.stringify(q)}`;
+      }
+    }
+    for (let j = 0; j < x.bonds.length; j += 1) {
+      const p = x.bonds[j];
+      const q = y.bonds[j];
+      if (JSON.stringify(p) !== JSON.stringify(q))
+        return `bond ${j}: ${JSON.stringify(p)} vs ${JSON.stringify(q)}`;
+    }
+  }
+  return null;
+}

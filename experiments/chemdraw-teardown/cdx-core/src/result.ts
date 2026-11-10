@@ -6,7 +6,11 @@ export type CdxErrorCode =
   | "truncated" // data ended inside a header, tag, length or payload
   | "unterminated" // data ended with objects still open
   | "too-deep" // nesting exceeded MAX_DEPTH
-  | "not-base64"; // base64 wrapper could not be decoded
+  | "not-base64" // base64 wrapper could not be decoded
+  | "not-xml" // CDXML text is not well-formed XML
+  | "not-cdxml" // well-formed XML whose root is not <CDXML>
+  | "not-zip" // PPTX/DOCX container could not be read
+  | "not-cfb"; // OLE compound file could not be read
 
 export interface CdxError {
   readonly code: CdxErrorCode;
